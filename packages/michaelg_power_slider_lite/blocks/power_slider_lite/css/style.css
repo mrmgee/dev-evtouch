@@ -1,0 +1,49 @@
+.powerSliderShell {  }
+
+.powerSliderContainer {  }
+
+.powerSlide { display: block; text-decoration: none; position: relative; z-index: -1; }
+
+.powerSlide img { }
+.powerSlide .largeText {
+	position: absolute;
+	top: 350px;
+	left: 300px;
+	max-width: 1220px;
+	color: #fff;
+	display: block;
+/*	background: #000; */
+/*	background: rgba(0,0,0,0.7); */
+	font-size: 64px;
+	font-weight: 900;
+	-webkit-text-shadow: 2px 2px 4px #333;
+	text-shadow: 2px 2px 4px #333;
+	text-transform: uppercase;
+}
+.powerSlide .smallText {
+	position: absolute;
+	bottom: 245px;
+	right: -92px;
+	width: 200px;
+	color: #fff;
+	display: block;
+	font-size: 10px;
+	font-weight: 500;
+	font-style: italic;
+	-webkit-transform: rotate(-90deg);
+/*	z-index: 10; */
+}
+
+
+
+/* .powerSlide .largeText { font-size: 32px; bottom: 24px; padding: 10px 10px; } */
+/* .powerSlide .smallText { font-size: 18px; bottom: 0; left: 0; padding: 3px 10px; } */
+	
+.powerSliderPagination {  }
+
+.powerSliderPagination a { background: #000; background: rgba(0,0,0,0.7); color: #fff; display: inline-block; *display: inline; padding: 3px 6px; }
+.powerSliderPagination a:hover, .powerSliderPagination a.activeSlide { text-decoration: underline; }
+	
+.powerSliderNext, .powerSliderPrev { width: 50px; height: 40px; cursor: pointer; }
+.powerSliderNext { background: url(next.png); }	
+.powerSliderPrev { background: url(prev.png); }

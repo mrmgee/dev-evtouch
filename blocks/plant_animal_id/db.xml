@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btDCPlantAnimalId">
+		<field name="bID" type="I"><key /><unsigned /></field>
+
+		<field name="field_1_textarea_text" type="X"></field>
+
+		<field name="field_2_textbox_text" type="X"></field>
+
+		<field name="field_3_select_value" type="I"><default value="0" /></field>
+
+		<field name="mo_jan" type="I"><default value="0" /></field>
+		
+		<field name="mo_feb" type="I"><default value="0" /></field>
+	
+		<field name="mo_mar" type="I"><default value="0" /></field>
+		
+		<field name="mo_apr" type="I"><default value="0" /></field>
+		
+		<field name="mo_may" type="I"><default value="0" /></field>
+		
+		<field name="mo_jun" type="I"><default value="0" /></field>
+		
+		<field name="mo_jul" type="I"><default value="0" /></field>
+		
+		<field name="mo_aug" type="I"><default value="0" /></field>
+		
+		<field name="mo_sep" type="I"><default value="0" /></field>
+
+		<field name="mo_oct" type="I"><default value="0" /></field>
+
+		<field name="mo_nov" type="I"><default value="0" /></field>
+
+		<field name="mo_dec" type="I"><default value="0" /></field>
+
+		<field name="field_5_image_fID" type="I"></field>
+
+		<field name="field_6_wysiwyg_content" type="X2"></field>
+
+		<field name="field_7_image_fID" type="I"></field>
+		
+		<field name="field_8_image_fID" type="I"></field>
+		
+		<field name="field_9_image_fID" type="I"></field>
+		
+		<field name="field_10_image_fID" type="I"></field>
+		
+		<field name="field_11_image_fID" type="I"></field>
+		
+		<field name="field_12_image_fID" type="I"></field>
+		
+		<field name="field_13_image_fID" type="I"></field>
+		
+		<field name="field_5_textbox_text" type="X"></field>
+		
+		<field name="field_8_textbox_text" type="X"></field>
+
+		<field name="field_10_textbox_text" type="X"></field>
+		
+		<field name="field_12_textbox_text" type="X"></field>
+
+	</table>
+</schema>

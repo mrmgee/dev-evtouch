@@ -1,0 +1,16 @@
+#pw_iframe-header-1 a {
+   margin-right: 10px;
+   height: 1000px;
+}
+#pw_iframe-content table {
+   margin-top: 10px;
+}
+#pw_iframe-content th {
+   text-align: left;
+   background: #ddd;
+   height: 1000px;
+ height: 100%;   
+}
+
+
+

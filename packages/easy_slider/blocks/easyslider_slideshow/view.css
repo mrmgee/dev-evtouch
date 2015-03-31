@@ -1,0 +1,22 @@
+/** 
+ * Slideshow style rules.
+ */
+div.easysliderslideshow
+{
+
+}
+/** 
+ * Slideshow controls style rules.
+ */
+.easysliderslideshow .pagination {
+ list-style:none;
+ margin:0;
+ padding:0;
+}
+/*
+ * Optional:
+ * Show the current slide in the pagination
+*/
+.easysliderslideshow .pagination .current a {
+ color:red;
+}

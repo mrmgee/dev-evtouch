@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btEasySliderSlideshow">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="isLast" type="I">
+		</field>
+		<field name="showControls" type="I">
+		</field>
+		<field name="showPagination" type="I">
+		</field>		
+		<field name="slideTime" type="I">
+		</field>
+		<field name="autostart" type="I">
+		</field>
+		<field name="hoverPause" type="I">
+		</field>		
+		<field name="wrapperStart" type="X2">
+		</field>	
+		<field name="wrapperEnd" type="X2">
+		</field>				
+		<!--
+			//TODO: add transitiontype,transitiontime,transitiondirection
+		-->
+	</table>
+</schema>

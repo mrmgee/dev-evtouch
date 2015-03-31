@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://dev-evtouch:8888</loc>
+  <lastmod> 2014-07-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>1.0</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/</loc>
+  <lastmod>2012-06-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/</loc>
+  <lastmod>2014-07-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/animals-id/mammals-id/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/animals-id/reptiles-id/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/</loc>
+  <lastmod>2012-06-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/</loc>
+  <lastmod>2012-07-11</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest01/</loc>
+  <lastmod>2012-07-11</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest02/</loc>
+  <lastmod>2012-07-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest03/</loc>
+  <lastmod>2012-07-20</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest04/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest05/</loc>
+  <lastmod>2012-07-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/restoration-projects/rest06/</loc>
+  <lastmod>2012-07-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides01/</loc>
+  <lastmod>2012-07-10</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides02/</loc>
+  <lastmod>2012-07-11</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides03/</loc>
+  <lastmod>2012-07-11</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides04/</loc>
+  <lastmod>2012-07-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides05/</loc>
+  <lastmod>2012-07-21</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/tides/tides06/</loc>
+  <lastmod>2012-07-11</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/mammals-match/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/salt-marsh-plants/</loc>
+  <lastmod>2013-04-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/project-wet-webpointer/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/birds-matching/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/</loc>
+  <lastmod>2012-06-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/</loc>
+  <lastmod>2012-07-16</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/geese/</loc>
+  <lastmod>2012-09-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/upright-perching-water/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/upland-ground/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/long-legged-waders/</loc>
+  <lastmod>2012-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/sandpiper-like/</loc>
+  <lastmod>2012-07-16</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/hawk-like/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/chicken-like-marsh/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/gull-like/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/pigeon-like/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/owls/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/swallow-like/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/hummingbirds/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/</loc>
+  <lastmod>2012-07-16</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/dabbling-ducks/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/diving-ducks/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/grebes/</loc>
+  <lastmod>2012-07-13</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/duck-like/pelican/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/sandpiper-like/tall-wading-birds/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/sandpiper-like/short-wading-birds/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/flycatchers-shrikes/</loc>
+  <lastmod>2012-07-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/crows-ravens-jays/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/wrens-bushtits/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/medium-thrush-like-families/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/warblers/</loc>
+  <lastmod>2012-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/sparrows-towhees-grosbeaks/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/blackbirds-orioles/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/birds-id/perching-like/finches/</loc>
+  <lastmod>2012-07-15</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/plant-animal-id/</loc>
+  <lastmod>2012-07-02</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/animals-id/</loc>
+  <lastmod>2012-06-28</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/shrub/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/herb/</loc>
+  <lastmod>2012-07-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/grass/</loc>
+  <lastmod>2012-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/algae/</loc>
+  <lastmod>2012-07-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/sedge/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/parasite/</loc>
+  <lastmod>2012-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/succulent/</loc>
+  <lastmod>2012-09-05</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/tree/</loc>
+  <lastmod>2012-07-18</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/ev-history/</loc>
+  <lastmod>2013-06-27</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/webpointer/</loc>
+  <lastmod>2013-06-27</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/stats/</loc>
+  <lastmod>2013-03-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/stats/</loc>
+  <lastmod>2013-03-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/stats/</loc>
+  <lastmod>2013-03-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/plant-animal-id/</loc>
+  <lastmod>2012-07-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/stats/</loc>
+  <lastmod>2013-03-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/plant-animal-id/</loc>
+  <lastmod>2012-07-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/stats/</loc>
+  <lastmod>2013-03-04</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/plant-animal-id/</loc>
+  <lastmod>2012-07-06</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/ebird/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/earth/earth-webpointer/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sky/sky-webpointer/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/sea/sea-webpointer/</loc>
+  <lastmod>2012-07-25</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/brown-flower/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/pink-purple-flower/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/red-orange-flower/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/white-pale-color-flower/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/yellow-flower/</loc>
+  <lastmod>2012-07-14</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/plant-animal-id/plants/habit-shape/</loc>
+  <lastmod>2012-07-12</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888?cID=254</loc>
+  <lastmod>2013-03-29</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888?cID=255</loc>
+  <lastmod>2013-03-29</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/salt-marsh-plants/</loc>
+  <lastmod>2013-06-27</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/</loc>
+  <lastmod>2013-08-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider01/</loc>
+  <lastmod>2013-08-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider02/</loc>
+  <lastmod>2013-08-20</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.2</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider03/</loc>
+  <lastmod>2013-08-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider04/</loc>
+  <lastmod>2013-08-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider05/</loc>
+  <lastmod>2013-08-26</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.3</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888/change/bayland-comparison/slider06/</loc>
+  <lastmod>2013-08-17</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.4</priority>
+</url>
+<url>
+<loc>http://dev-evtouch:8888?cID=281</loc>
+  <lastmod>2014-06-19</lastmod>
+  <changefreq>weekly</changefreq>
+  <priority>0.1</priority>
+</url>
+</urlset>
