@@ -30,7 +30,7 @@ $dst = date("I"); // check daylight savings 0 or 1	PST	UTC−8:00 or PDT	UTC−7
 $extSites = array();	//external sites URL array - get form website
 $extSites[0] = 'http://tidesandcurrents.noaa.gov/ports/ports.html?id=9414523&mode=allwater';
 $extSites[1] = 'http://www.weather.gov/xml/current_obs/KPAO.xml';
-$extSites[2] = 'http://192.168.15.11/?command=DataQuery&uri=dl:Table1&format=xml&mode=most-recent';
+//$extSites[2] = 'http://192.168.15.11/?command=DataQuery&uri=dl:Table1&format=xml&mode=most-recent';
 
 
 $extSitesFile = array();	//external sites file path array - save website to a file

@@ -30,20 +30,20 @@ $weatherTimeFullObj = $myweather->data->r['time'];
 $weatherTimeFull = new DateTime($weatherTimeFullObj);
 $weatherTime = $weatherTimeFull->format('g:ia'); // g 12 hour without leading zero : i minutes a am/pm
 
-$humidFull = (float)$myweather->data->r->v2; //type casting turns object into float
+$humidFull = (float)$myweather->data->r->v4; //type casting turns object into float
 $humid = number_format($humidFull, 1);  //one decimal point
 
-$rainFallFull = (float)$myweather->data->r->v3; //type casting turns object into float
+$rainFallFull = (float)$myweather->data->r->v2; //type casting turns object into float
 $rainFall = number_format($rainFallFull, 1);  //one decimal point
 
-$windSpeedFull = (float)$myweather->data->r->v5; //type casting turns object into float
+$windSpeedFull = (float)$myweather->data->r->v6; //type casting turns object into float
 $windSpeed = number_format($windSpeedFull, 1);  //one decimal points
 
-$windDirFull = $myweather->data->r->v6;
+$windDirFull = $myweather->data->r->v7;
 $dirsCal = array('N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW', 'N');
 $windDir = $dirsCal[round($windDirFull/45)];
 
-$tempFull = (float)$myweather->data->r->v1;
+$tempFull = (float)$myweather->data->r->v3;
 $temp = number_format($tempFull);  //rounds up from decimal
 ?>
 	<script type="text/javascript">

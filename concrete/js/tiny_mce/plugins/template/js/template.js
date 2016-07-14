@@ -32,7 +32,7 @@ var TemplateDialog = {
 
 		if (!self.innerWidth) {
 			w = document.body.clientWidth - 50;
-			h = document.body.clientHeight - 160;
+			h = document.body.clientHeight - 160;	
 		} else {
 			w = self.innerWidth - 50;
 			h = self.innerHeight - 170;
@@ -41,8 +41,9 @@ var TemplateDialog = {
 		e = document.getElementById('templatesrc');
 
 		if (e) {
-			e.style.height = Math.abs(h) + 'px';
-			e.style.width = Math.abs(w - 5) + 'px';
+			e.style.height = Math.abs(h-200) + 'px';
+			e.style.width = Math.abs(w - 150) + 'px';	
+			
 		}
 	},
 

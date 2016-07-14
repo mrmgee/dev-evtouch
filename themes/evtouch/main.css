@@ -581,6 +581,10 @@ h1.profilin {
 	font-size: 44px;
 	font-weight: 500;
 }
+.easysliderslideshow.full_app .header.selCat h1 p {
+	font-size: 44px;
+	font-weight: 500;
+}
 
 .header h3 {
 	float: left;
@@ -1303,7 +1307,7 @@ h4.sunSet {
 	border-radius:8px;
 	z-index: 105;
 }
-#salt-marsh-plants .inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont {
+#over1.inOverlayCont, #salt-marsh-plants .inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont {
 	position: absolute;
 /*	top: 250px; */
 	top: 15%;
@@ -1317,7 +1321,7 @@ h4.sunSet {
 	border-radius:8px;
 	z-index: 105;
 }
-#salt-marsh-plants #end1 {	/* Zoom cont completion overlay */
+#end1, #salt-marsh-plants #end1 {	/* Zoom cont completion overlay */
 	position: relative;
 /*	width: 1330px; 1330 - (40x2) = 1250 */
 	width: 1250px;
@@ -1326,7 +1330,7 @@ h4.sunSet {
 	opacity: 1.0;
 	border-radius:8px;
 }
-#salt-marsh-plants .inOverlayCont p, #end1 p, #salt-marsh-plants #end1 p, #tides .inOverlayCont p {
+#over1.inOverlayCont p, #salt-marsh-plants .inOverlayCont p, #end1 p, #salt-marsh-plants #end1 p, #tides .inOverlayCont p {
 	margin: 20px 20px 30px 20px;
 	padding: 0;
 	color: #FFF;
@@ -1404,6 +1408,9 @@ h4.sunSet {
 	text-align: center;
 	border-radius:8px;
 /*	border: 1px solid #000; */
+}
+body .intro .startBtn p {
+	margin: 0;
 }
 .nextBtnInv {
 	position: relative;

@@ -74,6 +74,10 @@ else {
 		
 <?php	
 if ($isEdit == 1) {  // If in edit mode, show all blocks
+
+	$hd = new Area('Header');
+	$hd->display($c);
+	
 	$i = new Area('Intro');
 	$i->display($c);
 	
@@ -103,9 +107,12 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 $page = Page::getCurrentPage();
 $pageID = $page->getCollectionID();
 $pageCont = Page::getByID($pageID, $version = 'RECENT');
+$hd = new Area('Header');
 $a = new Area('Main');
 $i = new Area('Intro');
 $o = new Area('Overlay');
+
+$matchHeaderArea = $hd->getAreaBlocksArray($pageCont);
 $blocks = $a->getAreaBlocksArray($pageCont);
 $introBl =  $i->getAreaBlocksArray($pageCont);
 $overlayBl =  $o->getAreaBlocksArray($pageCont);
@@ -117,11 +124,14 @@ $overlayBl =  $o->getAreaBlocksArray($pageCont);
 					<!--SLIDER CHANGE-->
 					<div class="slide">
 						<!--START REPLACE-->
-<?php if ($pageName == "birds-matching"){ ?>
-						<div class="header selCat <?php echo $parentName ?>"><h1>Bird Beaks - The Right Tool for the Job</h1></div>
-<?php } else { ?>
-						<div class="header selCat <?php echo $parentName ?>"><h1>Mammals and Their Habitats</h1></div>
-<?php } ?>
+						
+<?php	
+						foreach ($matchHeaderArea as $matchHeader) {
+							echo '							<div class="header selCat '.$parentName.'"><h1>'.PHP_EOL;
+							$matchHeader->display();
+							echo '</h1></div>'.PHP_EOL;
+						}												
+?>
 						<div class="intro">
 <?php
 $itc = 1;
@@ -130,7 +140,12 @@ foreach ($introBl as $intro) {
 		echo '							<div class="clear"></div>'.PHP_EOL;
 		echo '							<div class="fullAppCta">'.PHP_EOL;
 		$intro->display().PHP_EOL;
-		echo '								<div id="1" class="startBtn '.$parentName.'">Start &gt;</div>'.PHP_EOL;
+//		echo '								<div id="1" class="startBtn '.$parentName.'">Start &gt;</div>'.PHP_EOL;
+//		echo '							<div class="clear"></div></div>'.PHP_EOL;
+	} else if ($itc == 3) {  //Start btn label
+		echo '								<div id="1" class="startBtn '.$parentName.'">';
+		$intro->display();
+		echo '</div>'.PHP_EOL;
 		echo '							<div class="clear"></div></div>'.PHP_EOL;
 	} else {
 		$intro->display();

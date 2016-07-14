@@ -220,7 +220,7 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 		var tg = $("#placement").timeline({
 				"min_zoom":36, 
 				"max_zoom":36, //55
-				"show_footer":false,  //hides timeglider black toolbar
+				"show_footer":true,  //hides timeglider black toolbar
 				// data source is the id of the table!
 				"display_zoom_level":true,	//Hides zoom level number in zoom tool bar
 				"data_source":"#mylife"	//Orig table

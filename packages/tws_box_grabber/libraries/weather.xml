@@ -3,25 +3,26 @@
 <head>
 <environment>
 <station-name>63587</station-name>
-<table-name>Table1</table-name>
+<table-name>Table1_5min</table-name>
 <model>CR1000</model>
 <serial-no>63587</serial-no>
-<os-version>CR1000.Std.27</os-version>
-<dld-name>CPU:ecorawsfinal.CR1</dld-name>
-<dld-sig>7371</dld-sig>
+<os-version>CR1000.Std.28</os-version>
+<dld-name>CPU:paloalto.CR1</dld-name>
+<dld-sig>479</dld-sig>
 </environment>
 <fields>
+<field name="Batt_Volt_Min" type="xsd:float" units="Volts" process="Min"/>
+<field name="Rain_in_Tot" type="xsd:float" units="inch" process="Tot"/>
 <field name="AirTF_Avg" type="xsd:float" units="Deg F" process="Avg"/>
 <field name="RH" type="xsd:float" units="%" process="Smp"/>
-<field name="Rain_in_Tot" type="xsd:float" units="inch" process="Tot"/>
 <field name="SlrW_Avg" type="xsd:float" units="W/m²" process="Avg"/>
 <field name="WS_mph_S_WVT" type="xsd:float" units="miles/hour" process="WVc"/>
 <field name="WindDir_D1_WVT" type="xsd:float" units="Deg" process="WVc"/>
+<field name="WindDir_SD1_WVT" type="xsd:float" units="Deg" process="WVc"/>
 <field name="WS_mph_Max" type="xsd:float" units="miles/hour" process="Max"/>
-<field name="WS_mph_TMx" type="xsd:dateTime" units="miles/hour" process="TMx"/>
 </fields>
 </head>
 <data>
-<r time="2014-07-21T12:00:00" no="17239">
-<v1>70.35</v1><v2>76.45</v2><v3>0</v3><v4>843</v4><v5>12.61</v5><v6>280.5</v6><v7>15.3</v7><v8>2014-07-21T11:58:10</v8></r></data>
+<r time="2015-07-08T09:25:00" no="42828">
+<v1>13.27</v1><v2>0</v2><v3>63.32</v3><v4>76.12</v4><v5>259.8</v5><v6>6.116</v6><v7>246.7</v7><v8>13.07</v8><v9>9.82</v9></r></data>
 </csixml>

@@ -43,6 +43,19 @@ Loader::element('editor_config');
 	<?php  echo $form->text('field_6_textbox_text', $field_6_textbox_text, array('style' => 'width: 95%;')); ?>
 </div>
 
+
+
+<div class="ccm-block-field-group">
+	<h2>top coord</h2>
+	<?php  echo $form->text('field_10_textbox_text', $field_10_textbox_text, array('style' => 'width: 95%;')); ?>
+</div>
+
+<div class="ccm-block-field-group">
+	<h2>left coord</h2>
+	<?php  echo $form->text('field_11_textbox_text', $field_11_textbox_text, array('style' => 'width: 95%;')); ?>
+</div>
+
+
 <div class="ccm-block-field-group">
 	<h2>Incorrect content</h2>
 	<?php  Loader::element('editor_controls'); ?>

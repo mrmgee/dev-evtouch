@@ -12,6 +12,9 @@ $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
+//$pageURL = $c->getCollectionURL();
+$homeURL = $parent->getCollectionPath();
+
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
 $fileList = new FileList();
@@ -86,7 +89,8 @@ if ($isEdit == 0) {  // IF logged-in don't output JS
 		
 		$(".nHome").click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+//			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});

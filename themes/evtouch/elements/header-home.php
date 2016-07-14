@@ -2,6 +2,19 @@
 global $c;
 $pageTitle = $c->getCollectionName();
 $pageName = $c->getCollectionHandle();
+
+//Check if HOME/EARTH > parent
+// or
+// HOME/SPN/EARTH > grandparent
+/**
+$parent = Page::getByID($c->getCollectionParentID());
+$grandParent = Page::getByID($parent->getCollectionParentID());  // Restoration Projects 
+
+$parentName = $parent->getCollectionHandle();
+$grandParentName = $grandParent->getCollectionHandle();
+
+$children = $grandParent->getCollectionChildrenArray($intOneLevel = 1);  // Get first-level children of $page object and put in array $children
+**/
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo LANGUAGE?>">
@@ -75,6 +88,31 @@ $(document).ready(function() {
 		<?php  
 		$a = new Area('Header Image');
 		$a->display($c);
+		
+		if ($pageName == "earth") {  // if YES Login and YES Edit
+		$langLnk = "Spanish";
+		}
+		else {   // if YES Login and NO Edit
+		$langLnk = "English";
+		}
+
+
+		echo PHP_EOL.'<h2>'.$grandParentName.' / '.$parentName.'</h2>'.PHP_EOL; //Display page title Earth
+		
+		echo PHP_EOL.'<ul>'.PHP_EOL;
+		foreach ($children as $child) {
+			$childPage = Page::getByID($child);
+			$childPageName = $childPage->getCollectionHandle();
+			$childPageTitle = $childPage->getCollectionName();
+			echo PHP_EOL.'<li>childPageName: '.$childPageName.' - '.$childPageTitle.'</li>'.PHP_EOL;  // Testing
+		}
+		echo PHP_EOL.'</ul>'.PHP_EOL;
+		
+		echo PHP_EOL.'<h2>LANG: '.$langLnk.'</h2>'.PHP_EOL; //Display page title Earth
+		echo PHP_EOL.'<h2>TITLE: '.$pageTitle.'</h2>'.PHP_EOL; //Display page title Earth
+		echo PHP_EOL.'<h2>NAME: '.$pageName.'</h2>'.PHP_EOL; //Display page name earth
+
+		
 		?>
 	</div>
 	

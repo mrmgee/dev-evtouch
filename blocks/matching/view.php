@@ -1,4 +1,44 @@
 <?php  defined('C5_EXECUTE') or die("Access Denied.");
+global $u;
+global $c;
+$curBl = $b->getBlockID();
+
+if ($u -> isLoggedIn ()) {
+	$isLogin = 1;
+} else {
+	$isLogin = 0;
+}
+
+if ($c->isEditMode()) {
+	$isEdit = 1;
+} else {
+	$isEdit = 0;
+}
+
+
+$zTop = htmlentities($field_14_textbox_text, ENT_QUOTES, APP_CHARSET);
+$zLeft = htmlentities($field_15_textbox_text, ENT_QUOTES, APP_CHARSET);
+
+if (!empty($field_16_textbox_text)) {
+	$zWidth = htmlentities($field_3_textbox_text, ENT_QUOTES, APP_CHARSET);
+} else {
+	$zWidth = 200;
+}
+$zWidthCom = 'width:'.$zWidth.'px;';
+if (!empty($field_17_textbox_text)) {
+	$zHeight = htmlentities($field_4_textbox_text, ENT_QUOTES, APP_CHARSET);
+} else {
+	$zHeight = 200;
+}
+$zHeightCom = 'height:'.$zHeight.'px;';
+
+
+if ($isEdit == 1) {  // If EDIT then show hotspot
+	$zoomStyles = 'display:block; style="top:'.$zTop.'px; left:'.$zLeft.'px;'.$zWidthCom.$zHeightCom;
+	
+} else {
+	$zoomStyles = 'position:absolute; top:'.$zTop.'px; left:'.$zLeft.'px;'.$zWidthCom.$zHeightCom;
+}
 ?>
 
 <?php  if (!empty($field_1_textbox_text)): ?>
