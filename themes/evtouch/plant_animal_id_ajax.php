@@ -9,38 +9,13 @@ Loader::model('file_set');
 $page = Page::getByID(137);  // Master Plant ID page
 //$pageID = $page->getCollectionID();
 //echo PHP_EOL.'<p>pageID: '.$pageID.'</p>'.PHP_EOL;
+$pageCont = Page::getByID(137, $version = 'RECENT');
 
 $parent = Page::getByID($c->getCollectionParentID());
 $pageName = $parent->getCollectionHandle();
 $pageTitle = $parent->getCollectionName();
 
 $children = $page->getCollectionChildrenArray($intOneLevel = 1);  // Get first-level children of $page object and put in array $children
-
-/*
-<p>childPageName list</p>
-Array
-(
-    [0] => 140
-    [1] => 141
-    [2] => 143
-    [3] => 177
-    [4] => 178
-    [5] => 179
-)
-
-<p>childPageName: mammals-id</p>
-
-<p>childPageName: reptiles-id</p>
-
-<p>childPageName: plants</p>
-
-<p>childPageName: birds-id</p>
-
-<p>childPageName: duck-like</p>
-
-<p>childPageName: geese</p>
-*/
-
 
 $fsName = $pageName.'_bkg';
 $fs = FileSet::getByName($fsName);
@@ -61,6 +36,27 @@ foreach ($children as $child) {
 	$childPageName = $childPage->getCollectionHandle();
 //	echo PHP_EOL.'<p>childPageName: '.$childPageName.'</p>'.PHP_EOL;  // Testing
 }
+
+$hd = new Area('Header');
+$hd->display($c);
+
+
+
+
+/*
+$page = Page::getCurrentPage();
+$pageID = $page->getCollectionID();
+$pageCont = Page::getByID($pageID, $version = 'RECENT');
+$hd = new Area('Header');
+$a = new Area('Main');
+$i = new Area('Intro');
+$o = new Area('Overlay');
+$mBkg = new Area('Background');
+*/
+
+$plidHeaderArea = $hd->getAreaBlocksArray($pageCont);
+
+
 ?>
 <script type="text/javascript">
 	var appCat = "<?php echo $pageName ?>";
@@ -118,9 +114,22 @@ foreach ($children as $child) {
 					<!--SLIDER START-->
 					<div class="slide">
 						<!--START REPLACE-->
+<!--					
 						<div class="header main <?php echo $pageName ?>">
-							<h1>What did I see?</h1><h3>Touch the item you wish to identify.</h3>
+							<h1>333 What did I see?</h1><h3>Touch the item you wish to identify.</h3>
 						</div>
+-->						
+						
+<?php	
+						foreach ($plidHeaderArea as $plidHeader) {
+							echo '						<div class="header main '.$pageName.'">'.PHP_EOL;
+							$plidHeader->display();
+							echo '</div>'.PHP_EOL;
+						}												
+?>
+						
+						
+						
 						<ul id="paMain" class="pagination">
 							<li class="pagHide"><h2 id="0"></h2></li>
 							<li class="paBirds"><h2 id="1"></h2><h1>Bird</h1></li>
