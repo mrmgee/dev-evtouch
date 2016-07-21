@@ -86,6 +86,10 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 
 	$a = new Area('Main');
 	$a->display($c);
+	
+	$mBkg = new Area('Background');
+	$mBkg->display($c);
+	
 } else {   // If NOT edit mode output slides
 ?>
 		
@@ -111,11 +115,13 @@ $hd = new Area('Header');
 $a = new Area('Main');
 $i = new Area('Intro');
 $o = new Area('Overlay');
+$mBkg = new Area('Background');
 
 $matchHeaderArea = $hd->getAreaBlocksArray($pageCont);
 $blocks = $a->getAreaBlocksArray($pageCont);
 $introBl =  $i->getAreaBlocksArray($pageCont);
 $overlayBl =  $o->getAreaBlocksArray($pageCont);
+$mBkgBl =  $mBkg->getAreaBlocksArray($pageCont);
 ?>
 
 
@@ -528,6 +534,14 @@ foreach ($blocks as $matchBkg) {
 		$matchBkg->display();
 	}
 }
+
+
+//$mBkgBl
+
+foreach ($mBkgBl as $mBkgImg) {
+	$mBkgImg->display();
+}
+
 ?>
 				<div class="clear"></div>
 			</div><!-- END content -->
