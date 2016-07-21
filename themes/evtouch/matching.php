@@ -140,8 +140,6 @@ foreach ($introBl as $intro) {
 		echo '							<div class="clear"></div>'.PHP_EOL;
 		echo '							<div class="fullAppCta">'.PHP_EOL;
 		$intro->display().PHP_EOL;
-//		echo '								<div id="1" class="startBtn '.$parentName.'">Start &gt;</div>'.PHP_EOL;
-//		echo '							<div class="clear"></div></div>'.PHP_EOL;
 	} else if ($itc == 3) {  //Start btn label
 		echo '								<div id="1" class="startBtn '.$parentName.'">';
 		$intro->display();
@@ -205,6 +203,10 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 	$itemTargetTop = array();  // Maching block item target top coord
 	$itemTargetLeft = array();  // Maching block item target left coord
 	
+	$itemTargetWidth = array();  // Maching block item target width
+	$itemTargetHeight = array();  // Maching block item target height
+	
+	
 	$trItemName = array();  // Tracking Maching block item name
 	$trItemTarget = array();  // Tracking Maching block item target name underscores
 
@@ -212,7 +214,7 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 
 	foreach ($blocks as $b) {
 		$blTypeName = $b->getBlockTypeHandle();
-// echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL;
+ echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL;
 		if ($blTypeName == "content"){ // Display content blocks
 			$b->display();
 		}
@@ -256,7 +258,13 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 			
 			$itemTargetLeftSrc = $btc->field_11_textbox_text;  // Get item target top coord
 			array_push($itemTargetLeft, $itemTargetLeftSrc);
+			
+			
+			$itemTargetWidthSrc = $btc->field_12_textbox_text;  // Get item target width
+			array_push($itemTargetWidth, $itemTargetWidthSrc);
 
+			$itemTargetHeightSrc = $btc->field_13_textbox_text;  // Get item target height
+			array_push($itemTargetHeight, $itemTargetHeightSrc);
 
 //				$itemTarget[$itemNameCont]=$itemTargetCont;  // key => value
 
@@ -468,25 +476,52 @@ $i = 0;
 foreach ($itemTarget as $slot) {
 	if ($curSlot != $slot){  // Check if slot equals curSlot is duplicate
 		if ($pageName == "birds-matching"){  // Page name IS birds-matching
-			if ( (!empty($itemTargetTop[$i])) && (!empty($itemTargetTop[$i])) ) {
-				$targetStyles = 'style="top:'.$itemTargetTop[$i].'px;left:'.$itemTargetLeft[$i].'px;"';
+//			if ( (!empty($itemTargetTop[$i])) && (!empty($itemTargetLeft[$i])) ) {
+//				$targetStyles = 'style="top:'.$itemTargetTop[$i].'px;left:'.$itemTargetLeft[$i].'px;"';
+
+//Check if top left empty
+//check if width height empty
+//if not empty print styles
+//else if nothing
+
+			if ( (!empty($itemTargetTop[$i])) && (!empty($itemTargetLeft[$i])) ) {
+				$targetTopLeft = 'top:'.$itemTargetTop[$i].'px;left:'.$itemTargetLeft[$i].'px;';
+			} else {
+				$targetTopLeft = '';
+			}
+			if ( (!empty($itemTargetWidth[$i])) && (!empty($itemTargetHeight[$i])) ) {
+				$targetWidthHeight = 'width:'.$itemTargetWidth[$i].'px;height:'.$itemTargetHeight[$i].'px;"';
+			} else {
+				$targetWidthHeight = '';
+			}
+			
+			if ( (!empty($targetTopLeft)) || (!empty($targetWidthHeight)) ) {
+				$targetStyles = 'style="'.$targetTopLeft.$targetWidthHeight;
 			} else {
 				$targetStyles = '';
 			}
-			echo '<div id="slot'.($i).'" class="ui-droppable" '.$targetStyles.' ref="'.$itemTarget[$i].'"><h3 class="tarTitle">'.$itemTargetTxt[$i].'</h3></div>'.PHP_EOL;
+				
+
+
+			
+			echo '<div id="slot'.($i).'" class="ui-droppable" '.$targetStyles.' ref="'.$itemTarget[$i].'"><h3 class="tarTitle">'.$itemTargetTxt[$i].'</h3>';
+//TESTING
+			echo $i.'top:'.$itemTargetTop[$i].$i.'-left:'.$itemTargetLeft[$i].$i.'-w:'.$itemTargetWidth[$i].$i.'-h:'.$itemTargetHeight[$i];
+			
+			echo '</div>'.PHP_EOL;
 		} else {
 			echo '<div id="slot'.($i).'" class="ui-droppable" style="background: url('.$matchImgArr5[$i].') 0 0 no-repeat;" ref="'.$itemTarget[$i].'">'.PHP_EOL;
 			echo '<h3 class="tarTitle">'.$itemTarget[$i].'</h3>'.PHP_EOL;
 //			echo '<h4 class="imgCredit">'.$itemTargetCred[$i].'</h3></div>'.PHP_EOL;
 			echo '</div>'.PHP_EOL;
-		}
+		} //$pageName == "birds-matching"
 	}
 	$curSlot = $slot;
 	$i++;
 }
 ?>
 				</div><!-- END cardSlots -->
-<?php
+<?php  // Check if block type is image and set as bkg
 foreach ($blocks as $matchBkg) {
 	$blTypeName = $matchBkg->getBlockTypeHandle();
 	if ($blTypeName == "image"){ // Display bkg image blocks <div class="zoomBkg">

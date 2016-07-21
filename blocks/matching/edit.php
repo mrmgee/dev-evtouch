@@ -55,6 +55,16 @@ Loader::element('editor_config');
 	<?php  echo $form->text('field_11_textbox_text', $field_11_textbox_text, array('style' => 'width: 95%;')); ?>
 </div>
 
+<div class="ccm-block-field-group">
+	<h2>hotspot width</h2>
+	<?php  echo $form->text('field_12_textbox_text', $field_12_textbox_text, array('style' => 'width: 95%;')); ?>
+</div>
+
+<div class="ccm-block-field-group">
+	<h2>hotspot height</h2>
+	<?php  echo $form->text('field_13_textbox_text', $field_13_textbox_text, array('style' => 'width: 95%;')); ?>
+</div>
+
 
 <div class="ccm-block-field-group">
 	<h2>Incorrect content</h2>

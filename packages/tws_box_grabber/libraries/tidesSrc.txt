@@ -145,6 +145,7 @@
 									<li><select id="portsselect" style="width: 180px;"
 										onchange="window.open('/ports/index.html?port='+this.options[this.selectedIndex].value, '_top')">
 											<option value="">Select a PORT</option>
+											<option value="cc">Cape Cod</option>
 											<option value="ch">Charleston Harbor</option>
 											<option value="cp">Cherry Point</option>
 											<option value="cn">Chesapeake Bay North</option>
@@ -169,6 +170,7 @@
 											<option value="sn">Sabine Neches</option>
 											<option value="sf">San Francisco Bay</option>
 											<option value="sl">Soo Locks</option>
+											<option value="sv">Savannah</option>
 											<option value="ta">Tacoma</option>
 											<option value="tb">Tampa Bay</option>
 									</select></li>
