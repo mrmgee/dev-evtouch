@@ -56,7 +56,12 @@ $mBkg = new Area('Background');
 
 $plidHeaderArea = $hd->getAreaBlocksArray($pageCont);
 
-
+if ($c->isEditMode()) {
+	$isEdit = 1;
+}
+else {
+	$isEdit = 0;
+}
 ?>
 <script type="text/javascript">
 	var appCat = "<?php echo $pageName ?>";
@@ -99,6 +104,15 @@ $plidHeaderArea = $hd->getAreaBlocksArray($pageCont);
 
 	<div id="main-content-container">
 		<div id="main-content-inner">
+<?php	
+if ($isEdit == 1) {  // If in edit mode, show all blocks
+
+	$hd = new Area('Header');
+	$hd->display($c);
+	
+} else {   // If NOT edit mode output slides
+?>	
+		
 			<script type="text/javascript">
 			if (!(typeof easy_slider_slideshow != 'undefined')) {
 				var easy_slider_slideshow = new Array();
@@ -119,38 +133,52 @@ $plidHeaderArea = $hd->getAreaBlocksArray($pageCont);
 							<h1>333 What did I see?</h1><h3>Touch the item you wish to identify.</h3>
 						</div>
 -->						
-						
-<?php	
-						foreach ($plidHeaderArea as $plidHeader) {
-							echo '						<div class="header main '.$pageName.'">'.PHP_EOL;
-							$plidHeader->display();
-							echo '</div>'.PHP_EOL;
-						}												
-?>
-						
-						
-						
+
+
+
+
+						<div class="header main <?php echo $pageName ?>">
+<?php $plidHeader0 = Block::getByID($plidHeaderArea[0]->bID);  //Header
+$plidHeader0->display(); ?>			
+						</div>
 						<ul id="paMain" class="pagination">
 							<li class="pagHide"><h2 id="0"></h2></li>
-							<li class="paBirds"><h2 id="1"></h2><h1>Bird</h1></li>
+							<li class="paBirds"><h2 id="1"></h2><h1>
+<?php $plidHeader1 = Block::getByID($plidHeaderArea[1]->bID);  //Bird
+ob_start();
+$plidHeader1->display();
+$html1 = strip_tags(ob_get_clean());
+echo $html1;
+
+//blockDisp(); - LAST GOOD
+?>
+							</h1></li>
 							<li class="pagHide"><h2 id="2"></h2>3 List of Bird Shape matches</li>
-							<li class="paAnimals"><h2 id="3"></h2><h1>Animal</h1></li>
+							<li class="paAnimals"><h2 id="3"></h2><h1>
+<?php $plidHeader2 = Block::getByID($plidHeaderArea[2]->bID);  //Plant
+ob_start();
+$plidHeader2->display();
+$html2 = strip_tags(ob_get_clean());
+echo $html2; ?>
+							</h1></li>
 							<li class="pagHide"><h2 id="4"></h2>5 mammals</li>
 							<li class="pagHide"><h2 id="5"></h2>6 lizards</li>
-							<li class="paPlants"><h2 id="6"></h2><h1>Plant</h1></li>
-						</ul>
-						
+							<li class="paPlants"><h2 id="6"></h2><h1>
+<?php $plidHeader3 = Block::getByID($plidHeaderArea[3]->bID);  //Animal
+ob_start();
+$plidHeader3->display();
+$html3 = strip_tags(ob_get_clean());
+echo $html3; ?>
+							</h1></li>
+						</ul>						
 						<!--END REPLACE-->
 					</div>
-					
-					
 					
 					<script type="text/javascript">easy_slider_slideshow_configs_temp["slideTimes"].push(0)</script>
 					<!--SLIDER CHANGE-->
 					<div class="slide">
 						<!--START REPLACE slide2 Birds -->
-				<!--	<div class="header selCat <?php echo $pageName ?>"><h1>Bird Shape</h1><h3>Touch the closest match of the bird you saw.</h3></div> -->
-					<!--	<ul class="birdShapesNav lvl1"> Moved down to loop -->
+
 <?php
 foreach ($children as $child) {
 	$childPage = Page::getByID($child);
@@ -169,7 +197,11 @@ foreach ($children as $child) {
 	
 	if ($childPageName == "birds-id"){
 		echo PHP_EOL.'				<div id="main1" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
-		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Bird Shape</h1><h3>Touch the closest match of the bird you saw.</h3></div>'.PHP_EOL;
+//		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Bird Shape</h1><h3>Touch the closest match of the bird you saw.</h3></div>'.PHP_EOL;
+		echo PHP_EOL.'				<div class="header selCat '.$pageName.'">';
+		$plidHeader4 = Block::getByID($plidHeaderArea[4]->bID);
+		$plidHeader4->display();
+		echo '</div>'.PHP_EOL;
 		echo '							<ul class="birdShapesNav lvl1">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 	
 	
@@ -422,6 +454,10 @@ foreach ($childrenLvl1 as $childLvl1) {
 				</div><!-- END slides_container -->
 			</div><!-- END easysliderslideshow_140 -->
 
+
+<?php			
+}  // END  else {} NOT edit mode output slides
+?>
 			
 		</div><!-- END main-content-inner -->
 	</div><!-- END main-content-container -->
