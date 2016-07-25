@@ -14,6 +14,7 @@ $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
 //$pageURL = $c->getCollectionURL();
 $homeURL = $parent->getCollectionPath();
+$handle = $c->getCollectionTypeHandle();
 
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
@@ -111,7 +112,7 @@ if ($isEdit == 0) {  // IF logged-in don't output JS
 <link rel="stylesheet" type="text/css" href="<?php echo DIR_REL?>/packages/lightboxed_image/blocks/lightboxed_image/css/theme1/colorbox.css" />
 
 </head>
-<body id="<?php echo $pageName ?>">
+<body id="<?php echo $handle.'-'.$pageName ?>">
 <!--start main container -->
 <div id="main-container" >
 	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
@@ -147,14 +148,24 @@ $introBl =  $introArea->getAreaBlocksArray($pageCont);
 $overlayBl =  $o->getAreaBlocksArray($pageCont);
 
 // Instructions overlay
+echo '<div id="over'.$ii.'" class="inOverlayCont '.$parentName.'">'.PHP_EOL;
 $ii = 1;
 foreach ($introBl as $intro) {
-	echo '<div id="over'.$ii.'" class="inOverlayCont '.$parentName.'">'.PHP_EOL;
-	$intro->display();
-	echo '<div class="closeCb">Start &gt;</div>'.PHP_EOL;
-	echo '</div><!-- END cont'.$ii.' -->'.PHP_EOL;
+	if ($ii == 1) {
+		$intro->display();
+	} else if ($ii == 2) {  //Start btn label
+		echo '<div class="closeCb">';
+		ob_start();
+		$intro->display();
+		$html1 = strip_tags(ob_get_clean());
+		echo $html1;
+		echo '</div>'.PHP_EOL;
+	} else {
+
+	}	
 	$ii++;
 }
+echo '</div><!-- END cont'.$ii.' -->'.PHP_EOL;
 ?>
 			<div class="inOverlay ovFull"></div><!-- END hideCont intro -->
 

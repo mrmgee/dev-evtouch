@@ -38,7 +38,7 @@ foreach ($children as $child) {
 }
 
 $hd = new Area('Header');
-$hd->display($c);
+//$hd->display($c);
 
 
 
@@ -106,10 +106,10 @@ else {
 		<div id="main-content-inner">
 <?php	
 if ($isEdit == 1) {  // If in edit mode, show all blocks
-
+	echo '<div style="border:1px #fe66ee solid">'.PHP_EOL;
 	$hd = new Area('Header');
 	$hd->display($c);
-	
+	echo '</div>'.PHP_EOL;
 } else {   // If NOT edit mode output slides
 ?>	
 		
@@ -240,7 +240,11 @@ foreach ($children as $child) {
 	
 	if ($childPageName == "animals-id"){
 		echo PHP_EOL.'				<div id="main3" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
-		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Animal Type</h1><h3>Touch the closest match of the animal you saw.</h3></div>'.PHP_EOL;
+//		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Animal Type</h1><h3>Touch the closest match of the animal you saw.</h3></div>'.PHP_EOL;
+		echo PHP_EOL.'				<div class="header selCat '.$pageName.'">';
+		$plidHeader5 = Block::getByID($plidHeaderArea[5]->bID);
+		$plidHeader5->display();
+		echo '</div>'.PHP_EOL;
 		echo '							<ul class="birdShapesNav lvl1">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 
 		$parentPage = Page::getByID($child);  // Get page by ID $child
@@ -274,7 +278,11 @@ foreach ($children as $child) {
 	
 	if ($childPageName == "plants"){
 		echo PHP_EOL.'				<div id="main6" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
-		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Plant Shape</h1><h3>Touch the closest match of the plant you saw.</h3></div>'.PHP_EOL;
+//		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Plant Shape</h1><h3>Touch the closest match of the plant you saw.</h3></div>'.PHP_EOL;
+		echo PHP_EOL.'				<div class="header selCat '.$pageName.'">';
+		$plidHeader6 = Block::getByID($plidHeaderArea[6]->bID);
+		$plidHeader6->display();
+		echo '</div>'.PHP_EOL;
 		echo '							<ul class="birdShapesNav lvl1">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 
 		$parentPage = Page::getByID($child);  // Get page by ID $child

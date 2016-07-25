@@ -941,13 +941,14 @@ h4.needCont {
 
 /* Zoom Page styles */
 .zoomBkg {
-/*
+
 	position: absolute;
 	top: 0;
 	left: 0;
-*/
+/*
 	position: relative;
 	float: left;
+*/
 	margin: 0 40px 0 0;
 	display: block;
 	z-index: -9;
@@ -1307,7 +1308,7 @@ h4.sunSet {
 	border-radius:8px;
 	z-index: 105;
 }
-#over1.inOverlayCont, #salt-marsh-plants .inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont {
+#over1.inOverlayCont, #salt-marsh-plants .inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont, [id^="zoom"] .inOverlayCont {
 	position: absolute;
 /*	top: 250px; */
 	top: 15%;
