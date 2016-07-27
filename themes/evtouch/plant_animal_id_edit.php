@@ -226,6 +226,8 @@ $(document).ready(function() {
 	<div class="paIDloadCont">
 
 <?php
+echo '<p>parentName: '.$parentName.'</p>'.PHP_EOL;
+
 //Output page name as header
 	echo '<div id="shape'.$pageID.'" class="paIDresPage">'.PHP_EOL.'<div class="header selCatLvl2"><h3>'.$pageName.'</h3></div>'.PHP_EOL;
 	echo '<ul>'.PHP_EOL;

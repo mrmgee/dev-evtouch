@@ -10,6 +10,7 @@ $page = Page::getByID(137);  // Master Plant ID page
 //$pageID = $page->getCollectionID();
 //echo PHP_EOL.'<p>pageID: '.$pageID.'</p>'.PHP_EOL;
 $pageCont = Page::getByID(137, $version = 'RECENT');
+$pagePath = $c->getCollectionPath();
 
 $parent = Page::getByID($c->getCollectionParentID());
 $pageName = $parent->getCollectionHandle();
@@ -144,12 +145,38 @@ $plidHeader0->display(); ?>
 						<ul id="paMain" class="pagination">
 							<li class="pagHide"><h2 id="0"></h2></li>
 							<li class="paBirds"><h2 id="1"></h2><h1>
-<?php $plidHeader1 = Block::getByID($plidHeaderArea[1]->bID);  //Bird
+<?php $plidHeader1 = Block::getByID($plidHeaderArea[1]->bID); 				 //Bird
 ob_start();
 $plidHeader1->display();
 $html1 = strip_tags(ob_get_clean());
-echo $html1;
+$langTitle = explode(',', $html1);
 
+$strLen = strlen($pageName); // count sting length earth=5
+
+$pagePathStart = substr($pagePath, 1, $strLen);  // spn/e
+
+$pagePath;		//  /spn/earth/plant-animal-id
+
+
+if ($pageName != $pagePathStart){	// IF earth DOES NOT = spn/e
+	echo $langTitle[1];
+} else {
+	echo $langTitle[0];
+}
+
+/*
+echo substr('abcdef', 0, 4);  // abcd
+if === $homeURL
+$pageName			// earth
+$myString = "9,admin@example.com,8";
+$myArray = explode(',', $myString);
+print_r($myArray);
+*/
+
+//IF path is NOT / then use 2nd entry
+
+
+//echo $langTitle[0].'-'.$langTitle[1].'_'.$pagePathStart.'='.$pagePath;		//  /spn/earth/plant-animal-id
 //blockDisp(); - LAST GOOD
 ?>
 							</h1></li>
@@ -361,7 +388,8 @@ foreach ($children as $child) {
 		if (count($childrenLvl2) != 0){  // IF array IS NOT empty
 			echo PHP_EOL.'				<div id="sub'.$childLvl1.'" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 			if ($chdLvl1parentPageName == "birds-id"){
-				echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>'.$childLvl1Name.'</h1><h3>Touch the closest match of the bird you saw.</h3></div>'.PHP_EOL;
+				echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>'.$childLvl1Name.'</h1><h3>Touch the closest match of the bird you saw.</h3>'.$pagePath.'</div>'.PHP_EOL;
+//  $pagePath = /spn/earth/plant-animal-id
 			} else {
 				echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>'.$childLvl1Name.'</h1><h3>Touch the closest match of the plant you saw.</h3></div>'.PHP_EOL;
 			}
@@ -421,7 +449,7 @@ foreach ($children as $child) {
 <?php
 
 
-//echo '<p>blocks</p>'.PHP_EOL;  // Testing
+echo '<p>'.$pagePath.'</p>'.PHP_EOL;  // Testing
 foreach ($childrenLvl1 as $childLvl1) {
 // TESTING
 //$pageID = $childLvl1->getCollectionID();
