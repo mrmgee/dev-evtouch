@@ -58,6 +58,10 @@
 		<field name="field_10_textbox_text" type="X"></field>
 		
 		<field name="field_12_textbox_text" type="X"></field>
+		
+		<field name="field_14_textarea_text" type="X"></field>
+		
+		<field name="field_15_wysiwyg_content" type="X2"></field>
 
 	</table>
 </schema>

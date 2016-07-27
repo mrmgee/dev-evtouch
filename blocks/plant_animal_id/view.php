@@ -6,8 +6,11 @@ $imgHelper = Loader::helper('image');
 $page = Page::getCurrentPage();
 $pageID = $page->getCollectionID();
 
+
 $parent = Page::getByID($c->getCollectionParentID());
 $catName = $parent->getCollectionHandle();
+
+$pagePath = $c->getCollectionPath();
 
 if ($u -> isLoggedIn ()) {  // Check login
 	if ($c->isEditMode()) {  // if YES Login and YES Edit
@@ -109,10 +112,13 @@ endif;
 // START itemXXXinfo detail div
 	echo '<div id="item'.$curBl.'Info" class="itemInfoCont">'.PHP_EOL;
 	echo '<div class="itemInfoContHead '.$catName.'">'.PHP_EOL;
+//	
+	
 	echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
 		if (!empty($field_2_textbox_text)):
 			echo '<h5>'.htmlentities($field_2_textbox_text, ENT_QUOTES, APP_CHARSET).'</h5>'.PHP_EOL;
 		endif;
+echo $pagePath;
 		echo '</div>'.PHP_EOL;
 		
 	echo '<div id="imgs'.$curBl.'" class="lgImgsCont">'.PHP_EOL;

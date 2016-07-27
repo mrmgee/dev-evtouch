@@ -26,8 +26,8 @@ class PlantAnimalIdBlockController extends BlockController {
 		$content[] = $this->field_10_textarea_text;
 		$content[] = $this->field_11_textarea_text;
 		$content[] = $this->field_12_textarea_text;
-		$content[] = $this->field_13_textarea_text;
-		
+		$content[] = $this->field_14_textarea_text;
+		$content[] = $this->field_15_wysiwyg_content;
 		return implode(' - ', $content);
 	}
 
@@ -41,6 +41,7 @@ class PlantAnimalIdBlockController extends BlockController {
 		$this->set('field_12_image', (empty($this->field_12_image_fID) ? null : $this->get_image_object($this->field_12_image_fID, 0, 0, false)));
 		$this->set('field_13_image', (empty($this->field_13_image_fID) ? null : $this->get_image_object($this->field_13_image_fID, 0, 0, false)));
 		$this->set('field_6_wysiwyg_content', $this->translateFrom($this->field_6_wysiwyg_content));
+		$this->set('field_15_wysiwyg_content', $this->translateFrom($this->field_15_wysiwyg_content));
 	}
 
 
@@ -54,6 +55,7 @@ class PlantAnimalIdBlockController extends BlockController {
 		$this->set('field_12_image', (empty($this->field_12_image_fID) ? null : File::getByID($this->field_12_image_fID)));
 		$this->set('field_13_image', (empty($this->field_13_image_fID) ? null : File::getByID($this->field_13_image_fID)));
 		$this->set('field_6_wysiwyg_content', $this->translateFromEditMode($this->field_6_wysiwyg_content));
+		$this->set('field_15_wysiwyg_content', $this->translateFromEditMode($this->field_15_wysiwyg_content));
 	}
 
 	public function save($args) {
@@ -66,6 +68,7 @@ class PlantAnimalIdBlockController extends BlockController {
 		$args['field_12_image_fID'] = empty($args['field_12_image_fID']) ? 0 : $args['field_12_image_fID'];
 		$args['field_13_image_fID'] = empty($args['field_13_image_fID']) ? 0 : $args['field_13_image_fID'];
 		$args['field_6_wysiwyg_content'] = $this->translateTo($args['field_6_wysiwyg_content']);
+		$args['field_15_wysiwyg_content'] = $this->translateTo($args['field_15_wysiwyg_content']);
 		parent::save($args);
 	}
 

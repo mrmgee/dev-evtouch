@@ -11,6 +11,8 @@ Loader::element('editor_config');
 <div class="ccm-block-field-group">
 	<h2>Name</h2>
 	<?php  echo $form->text('field_1_textbox_text', $field_1_textbox_text, array('style' => 'width: 95%;')); ?>
+	<h2>Name: Spanish</h2>
+	<?php  echo $form->text('field_14_textbox_text', $field_14_textbox_text, array('style' => 'width: 95%;')); ?>
 </div>
 
 <div class="ccm-block-field-group">
@@ -104,6 +106,8 @@ Loader::element('editor_config');
 	<h2>Info</h2>
 	<?php  Loader::element('editor_controls'); ?>
 	<textarea id="field_6_wysiwyg_content" name="field_6_wysiwyg_content" class="ccm-advanced-editor"><?php  echo $field_6_wysiwyg_content; ?></textarea>
+	<h2>Info: Spanish</h2>
+	<textarea id="field_15_wysiwyg_content" name="field_15_wysiwyg_content" class="ccm-advanced-editor"><?php  echo $field_15_wysiwyg_content; ?></textarea>
 </div>
 
 
