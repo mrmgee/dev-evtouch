@@ -15,6 +15,8 @@ $grandParent = Page::getByID($parent->getCollectionParentID());
 $grandParentID = $grandParent->getCollectionID();
 $grandParentName = $grandParent->getCollectionHandle();
 
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
+
 if ($u -> isLoggedIn ()) {  // Check login
 	if ($c->isEditMode()) {  // if YES Login and YES Edit
 		$isEdit = 1;
@@ -226,10 +228,31 @@ $(document).ready(function() {
 	<div class="paIDloadCont">
 
 <?php
-echo '<p>parentName: '.$parentName.'</p>'.PHP_EOL;
-
 //Output page name as header
-	echo '<div id="shape'.$pageID.'" class="paIDresPage">'.PHP_EOL.'<div class="header selCatLvl2"><h3>'.$pageName.'</h3></div>'.PHP_EOL;
+$hd = new Area('Header');
+$headerArea = $hd->getAreaBlocksArray($c);
+
+$headerBlock0 = Block::getByID($headerArea[0]->bID);
+$headerBlock1 = Block::getByID($headerArea[1]->bID);
+
+	echo '<div id="shape'.$pageID.'" class="paIDresPage">'.PHP_EOL.'<div class="header selCatLvl2"><h3>';
+	
+	if (!empty($headerBlock0)){	//English 1st item in array
+		ob_start();
+		if ($multiLang == 0){	//$multiLang = 0; English
+			$headerBlock0 ->display();
+		} else {
+			$headerBlock1 ->display();
+		}
+		$html0 = strip_tags(ob_get_clean());
+		echo $html0;
+	} else {
+		echo $pageName;
+	}
+
+//	$pageName.
+	
+	echo '</h3></div>'.PHP_EOL;
 	echo '<ul>'.PHP_EOL;
 
 	$a = new Area('Main');
@@ -293,6 +316,8 @@ echo '<p>parentName: '.$parentName.'</p>'.PHP_EOL;
 			<?php
 			echo '<div id="shape'.$pageID.'" class="paIDresPageEdit"><div class="header selCat catEdit"><h3>'.$pageName.'</h3></div></div>';
 
+			$hd = new Area('Header');
+			$hd->display($c);
 			$a = new Area('Main');
 			$a->display($c);
 			?>
