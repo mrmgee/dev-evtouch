@@ -22,6 +22,8 @@ $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 
+$homeURL = $parent->getCollectionPath();
+
 if ($c->isEditMode()) {
 	$isEdit = 1;
 }
@@ -43,7 +45,8 @@ else {
 		
 		$('.nHome').click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+//			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});
@@ -220,7 +223,7 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 
 	foreach ($blocks as $b) {
 		$blTypeName = $b->getBlockTypeHandle();
- echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL;
+//TESTING echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL;
 		if ($blTypeName == "content"){ // Display content blocks
 			$b->display();
 		}
@@ -496,13 +499,13 @@ foreach ($itemTarget as $slot) {
 				$targetTopLeft = '';
 			}
 			if ( (!empty($itemTargetWidth[$i])) && (!empty($itemTargetHeight[$i])) ) {
-				$targetWidthHeight = 'width:'.$itemTargetWidth[$i].'px;height:'.$itemTargetHeight[$i].'px;"';
+				$targetWidthHeight = 'width:'.$itemTargetWidth[$i].'px;height:'.$itemTargetHeight[$i].'px;';
 			} else {
 				$targetWidthHeight = '';
 			}
 			
 			if ( (!empty($targetTopLeft)) || (!empty($targetWidthHeight)) ) {
-				$targetStyles = 'style="'.$targetTopLeft.$targetWidthHeight;
+				$targetStyles = 'style="'.$targetTopLeft.$targetWidthHeight.'"';
 			} else {
 				$targetStyles = '';
 			}
@@ -512,7 +515,7 @@ foreach ($itemTarget as $slot) {
 			
 			echo '<div id="slot'.($i).'" class="ui-droppable" '.$targetStyles.' ref="'.$itemTarget[$i].'"><h3 class="tarTitle">'.$itemTargetTxt[$i].'</h3>';
 //TESTING
-			echo $i.'top:'.$itemTargetTop[$i].$i.'-left:'.$itemTargetLeft[$i].$i.'-w:'.$itemTargetWidth[$i].$i.'-h:'.$itemTargetHeight[$i];
+//			echo $i.'top:'.$itemTargetTop[$i].$i.'-left:'.$itemTargetLeft[$i].$i.'-w:'.$itemTargetWidth[$i].$i.'-h:'.$itemTargetHeight[$i];
 			
 			echo '</div>'.PHP_EOL;
 		} else {

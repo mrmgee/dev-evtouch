@@ -5,12 +5,16 @@
 	
 	<div id="footer">
 <?php
-	$pageName = $c->getCollectionHandle();
-	echo '<h1>'.$pageName.'</h1>';
+//	$pageName = $c->getCollectionHandle();
+//	echo '<h1>'.$pageName.'</h1>';
+	
+	$pageTitle = $c->getCollectionName();
+	echo '<h1>'.$pageTitle.'</h1>';
 ?>
 		<div id="footer-inner">
 		</div>
 		<div id="ack">CREDITS</div>
+		<div id="langSelBtn">Language</div>
 	</div>
 
 <?php   Loader::element('footer_required');

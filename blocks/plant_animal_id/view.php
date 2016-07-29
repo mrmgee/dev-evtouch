@@ -3,9 +3,10 @@ global $c;
 global $u;
 $imgHelper = Loader::helper('image');
 
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
+
 $page = Page::getCurrentPage();
 $pageID = $page->getCollectionID();
-
 
 $parent = Page::getByID($c->getCollectionParentID());
 $catName = $parent->getCollectionHandle();
@@ -84,10 +85,18 @@ if (!empty($field_5_image)): // If NO image, don't output item info
 //	endif;
 	echo '</div>';
 
-if (!empty($field_1_textbox_text)):
-	echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
-endif;
-
+//Check SESSION for language $multiLang = 0/1: English/Spanish
+if ($multiLang == 0){	//$multiLang = 0; English
+	if (!empty($field_1_textbox_text)):
+		echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+	endif;
+} else {				//$multiLang = 1; Spanish
+	if (!empty($field_14_textbox_text)){
+		echo '<h4>'.htmlentities($field_14_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+	} else {
+		echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+	}
+}
 	//if ($c->isEditMode()) {  //If current page 137 is in Edit mode
 //	if ($pageID != 137 || 140  || 141) {  //ONLY If page 137 only show title DONT show full record
 	if ($pageIDEdit != 1) {  //IF page IS NOT edit page type DONT show full record
@@ -114,11 +123,20 @@ endif;
 	echo '<div class="itemInfoContHead '.$catName.'">'.PHP_EOL;
 //	
 	
-	echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+	if ($multiLang == 0){	//$multiLang = 0; English
+		if (!empty($field_1_textbox_text)):
+			echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+		endif;
+	} else {				//$multiLang = 1; Spanish
+		if (!empty($field_14_textbox_text)){
+			echo '<h4>'.htmlentities($field_14_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+		} else {
+			echo '<h4>'.htmlentities($field_1_textbox_text, ENT_QUOTES, APP_CHARSET).'</h4>'.PHP_EOL;
+		}
+	}
 		if (!empty($field_2_textbox_text)):
 			echo '<h5>'.htmlentities($field_2_textbox_text, ENT_QUOTES, APP_CHARSET).'</h5>'.PHP_EOL;
 		endif;
-echo $pagePath;
 		echo '</div>'.PHP_EOL;
 		
 	echo '<div id="imgs'.$curBl.'" class="lgImgsCont">'.PHP_EOL;
@@ -222,10 +240,19 @@ echo $pagePath;
 		}
 		echo '</ul>'.PHP_EOL;
 */	
+
+if ($multiLang == 0){	//$multiLang = 0; English
 		if (!empty($field_6_wysiwyg_content)):
 			echo $field_6_wysiwyg_content;
 		endif;
-		
+} else {				//$multiLang = 1; Spanish
+	if (!empty($field_15_wysiwyg_content)){
+		echo $field_15_wysiwyg_content;
+	} else {
+		echo $field_6_wysiwyg_content;
+	}
+}
+
 		//IF alt images output here
 		
 		if ((!empty($field_8_image)) || (!empty($field_10_image)) || (!empty($field_12_image))) {

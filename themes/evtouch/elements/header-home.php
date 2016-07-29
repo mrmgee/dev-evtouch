@@ -2,19 +2,23 @@
 global $c;
 $pageTitle = $c->getCollectionName();
 $pageName = $c->getCollectionHandle();
+$pagePath = $c->getCollectionPath();
+
+$parent = Page::getByID($c->getCollectionParentID());
+$homeURL = $parent->getCollectionPath();
 
 //Check if HOME/EARTH > parent
 // or
 // HOME/SPN/EARTH > grandparent
-/**
-$parent = Page::getByID($c->getCollectionParentID());
+
+//$parent = Page::getByID($c->getCollectionParentID());
 $grandParent = Page::getByID($parent->getCollectionParentID());  // Restoration Projects 
 
 $parentName = $parent->getCollectionHandle();
 $grandParentName = $grandParent->getCollectionHandle();
 
-$children = $grandParent->getCollectionChildrenArray($intOneLevel = 1);  // Get first-level children of $page object and put in array $children
-**/
+//$children = $grandParent->getCollectionChildrenArray($intOneLevel = 1);  // Get first-level children of $page object and put in array $children
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo LANGUAGE?>">
@@ -35,12 +39,17 @@ h1 { height: 80px; margin: 0 0 40px 0; padding: 10px 0 0 10px; font-size: 80px; 
 <link rel="stylesheet" type="text/css" href="<?php echo DIR_REL?>/packages/lightboxed_image/blocks/lightboxed_image/css/theme1/colorbox.css" />
 
 <script type="text/javascript">
+var langSel = '<?php echo $pagePath ?>';
 $(document).ready(function() { 
   
 //	$("body").css("display", "none");
  
 //    $("body").fadeIn(200);
- 
+
+    function redirectPage() {
+        window.location = linkLocation;
+    }
+
     $(".nav li").click(function(event){
         event.preventDefault();
         linkLocation = $(this).attr('id');
@@ -48,11 +57,34 @@ $(document).ready(function() {
         $("#footer").fadeOut(1000);
         $("#main-content-container").fadeOut(1000, redirectPage);
     });
-         
-    function redirectPage() {
-        window.location = linkLocation;
-    }
-    
+
+    $("#langSelBtn").click(function(event){
+    	if (langSel == '/<?php echo $pageName ?>'){
+    		langSel = 1;
+    		linkLocation = "/spn/<?php echo $pageName ?>/";
+    	} else { 
+    		langSel = '/<?php echo $pageName ?>';
+    		linkLocation = '/<?php echo $pageName ?>';
+    	}
+    	alert("langSel: " + langSel);
+    		$("#footer").fadeOut(1000);
+    		$("#main-content-container").fadeOut(1000, redirectPage);
+    }); 
+
+/*	
+    $("#langSelBtn").click(function(event){
+    	if (langSel == 0){
+    		langSel = 1;
+    		linkLocation = "/spn/<?php echo $pageName ?>/"  // /spn/earth/
+    		$("#footer").fadeOut(1000);
+    		$("#main-content-container").fadeOut(1000, redirectPage);
+    	} else { 
+    		langSel = 0;
+    	}
+    	alert("langSel: " + langSel);
+    });
+*/    
+
 	$("#ack").colorbox({inline:true,href:"#ackCont"}); // END main colorbox
 	$("#ackCont").addClass("<?php echo $pageName ?>");
 
