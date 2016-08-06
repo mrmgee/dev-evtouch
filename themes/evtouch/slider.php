@@ -26,7 +26,9 @@ $pgNameArr = array();  // Page name array
 
 $page = Page::getCurrentPage();
 $parent = $page->getCollectionID();
-$children = $page->getCollectionChildrenArray($intOneLevel = 1);  // Get children of $page object and put in array $children 
+$children = $page->getCollectionChildrenArray($intOneLevel = 1);  // Get children of $page object and put in array $children
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
 if ($c->isEditMode()) {
 	$isEdit = 1;
@@ -234,9 +236,11 @@ foreach ($children as $child) {
 if ($isEdit == 1) {  // If in edit mode, show all blocks
 	echo '<h2>EDIT MODE</h2>';
 	$slOver = new Area('SlidesOverlay');
+	$detBtnA = new Area('Detail Button');
 //	echo '<div class="slOverlayCont '.$parentName.'" style="width:80%; z-index:102;">'.PHP_EOL;
 	echo '<div style="width:80%; margin:0 0 60px 60px; z-index:102;">'.PHP_EOL;
 	$slOver->display($c);
+	$detBtnA->display($c);
 	echo '</div>'.PHP_EOL;
 } else {   // If NOT edit mode output slides
 	$page = Page::getCurrentPage();
@@ -278,7 +282,9 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 <?php
 $page = Page::getCurrentPage();
 $parent = $page->getCollectionID();
-$children = $page->getCollectionChildrenArray($intOneLevel = 1);  // Get children of $page object and put in array $children 
+$children = $page->getCollectionChildrenArray($intOneLevel = 1);  // Get children of $page object and put in array $children
+$detBtnA = new Area('Detail Button');
+$detBtnArr = $detBtnA->getAreaBlocksArray($pageCont);
 
 // Loop thru array $children
 $childNum = 1;
@@ -308,9 +314,12 @@ foreach ($children as $child) {
 	
 	$pageCont = Page::getByID($childID, $version = 'RECENT');
 	$introArea = new Area('Intro');
+	$hd = new Area('Header');
 	$a = new Area('Main');
 	$o = new Area('Overlay');
 	$introBl = $introArea->getAreaBlocksArray($pageCont);
+	$headArr = $hd->getAreaBlocksArray($pageCont);
+	
 	$blocks = $a->getAreaBlocksArray($pageCont);
 	$overlayBl =  $o->getAreaBlocksArray($pageCont);
 	
@@ -336,7 +345,20 @@ foreach ($children as $child) {
 	
 	if ((!$MainLeftBlocks) && (!$MainRightBlocks)) { //Don't output Details for last slide
 	} else {
-		echo '<div id="main'.$childNum.'" class="slDetBtn '.$parentName.'">DETAILS</div>'.PHP_EOL;
+		echo '<div id="main'.$childNum.'" class="slDetBtn '.$parentName.'">';
+		if (count($detBtnArr) != 0){  // IF array IS NOT empty
+			if ($multiLang == 0){	//$multiLang = 0; English
+				$detBtn = Block::getByID($detBtnArr[0]->bID);
+				$detBtn ->display();
+			} else {
+				$detBtn = Block::getByID($detBtnArr[1]->bID);
+				$detBtn ->display();
+			}
+		} else {
+			echo 'DETAILS'.PHP_EOL;
+			print_r ($detBtnArr);
+		}
+		echo '</div>'.PHP_EOL;
 	}
 	echo '	<div class="clear"></div>'.PHP_EOL;
 	echo '</div><!-- END sliderRight -->'.PHP_EOL;
@@ -345,7 +367,20 @@ foreach ($children as $child) {
 	echo '							<div id="main'.$childNum.'Info" class="mainInfoCont">'.PHP_EOL;
 	
 	//Main Left and Right blocks in Details
-	echo '							<h3>Please click numbers on image to reveal information.</h3>'.PHP_EOL;
+
+	if (count($headArr) != 0){  // IF array IS NOT empty
+		if ($multiLang == 0){	//$multiLang = 0; English
+			$headBl = Block::getByID($headArr[0]->bID);
+			$headBl ->display();
+		} else {
+			$headBl = Block::getByID($headArr[1]->bID);
+			$headBl ->display();
+		}
+	} else {
+		echo '							<h3>Please click numbers on image to reveal information.</h3>'.PHP_EOL;
+	}
+
+
 	echo '<div class="sliderLeft">'.PHP_EOL;
 	foreach ($MainLeftBlocks as $MainLeftCont) {
 		$MainLeftCont->display();

@@ -57,6 +57,9 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 <?php 	
 	if ($c->isEditMode()) {  // If in edit mode, show all blocks
 	//	echo '<h2>YES EDIT</h2>';	//Testing
+		$o = new Area('Overlay');
+		$o->display($c);
+			
 		$a = new Area('Main');
 		$a->display($c);
 	}
@@ -68,7 +71,11 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 	<div id="main-content-container" class="paEdit">
 		<div id="main-content-inner">
 			<!-- <table> -->
-			<?php  
+			<h2>Overlay</h2>
+			<?php
+			$o = new Area('Overlay');
+			$o->display($c);
+			echo '<h2>Main</h2>';
 			$a = new Area('Main');
 			$a->display($c);
 			?>
@@ -90,8 +97,9 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 
 
 <!-- Timeline Stylesheets -->
-<link rel="stylesheet" href="<?php echo DIR_REL?>/themes/evtouch/css/aristo/jquery-ui-1.8.5.custom.css" type="text/css" media="screen">
-<link rel="stylesheet" href="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/Timeglider.css" type="text/css" media="screen">
+<link rel="stylesheet" href="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/css/jquery-ui-1.10.3.custom.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/Timeglider.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/timeglider.datepicker.css" type="text/css" charset="utf-8">
 
 </head>
 <body>
@@ -104,78 +112,94 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 		<div id="main-content-inner">
 		
 		<!-- Instructions overlay -->
-		<div class="tg-modal full_modal" id="intro_modal" style="z-index:9; top:20px; left:20px; width:1745px; height:906px;">
+		<div class="tg-modal full_modal" id="intro_modal" style="top:20px; left:20px; width:1745px; height:906px;">
 			<div class="full_modal_scrim"></div>
 			<div class="full_modal_panel <?php echo $parentName ?>">
 				<div id="closeIntro" class="close-button full_modal_close">x</div>
 				<h4 class="slArrL"></h4>
-				<h3>Slide the timeline<br>left and right to<br>view the history of<br>Environmental Volunteers</h3>
+<!--				<h3>Slide the timeline<br>left and right to<br>view the history of<br>Environmental Volunteers</h3> -->
+<?php			
+				$o = new Area('Overlay');
+				$o->display($c);
+?>
 				<h4 class="slArrR"></h4>
 				<div class="clear"></div>
-
-				<!--
-				<div class="cont">
-					<div class="description">
-						<p>Slide the timeline left and right to view the hstory of Environmental Volunteers</p>
-					</div>
-					<div class="clear"></div>
-				</div>
-				-->
 			</div>
 		</div>
 
 <div id="placement"></div>
-<table class="timeline-table" id="mylife" focus_date="1990-01-20" title="Environmental Volunteers History" initial_zoom="36" description="A breif history of Environmental Volunteers">
 
-    <tr>
-    <th class="tg-startdate">start date</th>
-	<th class="tg-enddate">end date</th>
-    <th class="tg-title">title</th>
-    <th class="tg-description">description</th>
-	<th class="tg-icon">icon</th>
-	<th class="tg-date_limit">date limit</th> <!-- blank-day,month,day,year ye-only year -->
-	<th class="tg-importance">importance</th>  <!-- determines how large item displays -->
-	<th class="tg-link">link</th>
-	<th class="tg-image">image</th>
-	<th class="tg-modal_type">modal</th>
-    </tr>
+<script type="text/javascript">
+var tg_events_data_arr = [];
+//var stat_data_obj = { year:"YYYY", stat:"1234" };
+var stat_data_obj = {};
+var stat_data_arr = [];
+var matchDivsArr = [];
 
 <?php
 	$a = new Area('Main');
 	$a->display($c);
-	
-	//Add extra blank entry (last year +1) to padd right side of timeline
+?>
+
+var tg_data_source = [
+{
+"id":"js_history",
+"title":"Environmental Volunteers History",
+"description":"",
+"focus_date":"1990-01-20",
+"initial_zoom":"36",	//37
+"display_zoom_level":true,
+"image_lane_height":150,	//300=322 200=222 150=172
+//"events":[
+"events": tg_events_data_arr
+
+<?php /*
+	$a = new Area('Main');
+	$a->display($c);
+*/ ?>
+
+//]	//END "events":[
+    }
+]; // end of your data source array
+
+
+//Build an JS array, then push it to constructed container div studentsNum
+// if (!empty($field_6_textbox_text)) $field_6_textbox_text = '<h5 class=\"caption\">'.htmlentities($field_6_textbox_text, ENT_QUOTES, APP_CHARSET).'<\/h5>';	//Image caption
+
+var stat_data = { year:"YYYY", stat:"1234" };
+
+var stat_data_source = [
+<?php
+	$a = new Area('Main');
 	$page = Page::getCurrentPage();
 	$pageID = $page->getCollectionID();
 	$pageCont = Page::getByID($pageID, $version = 'RECENT');
 	$blocks = $a->getAreaBlocksArray($pageCont);
 	$blCount = count($blocks);
 
+/*
+$childLvlhd = new Area('Header');
+$childLvl1Area = $childLvlhd->getAreaBlocksArray($childLvl1Page);
+$childLvl1Block0 = Block::getByID($childLvl1Area[0]->bID);	//English Header Geese
+$childLvl1Block2 = Block::getByID($childLvl1Area[2]->bID);	//Spanish Header Gansos
+*/
+
 	$tm = 1;
 	foreach ($blocks as $b) {
-		if ($tm == $blCount){	//If block is last one
-			$btc = $b->getInstance();	//get the block's controller
-			$TmDate = $btc->field_1_date_value;	//retrieves Start Date field from the timeline block
-			$TmDateYr = (substr($TmDate, 0, 4)+1);
-			echo '<tr>'.PHP_EOL;
-			echo '<td>'.$TmDateYr.'-01-01 00-00-00</td>'.PHP_EOL;	//creates (2012+1)-01-01 = 2013-01-01
-			echo '<td></td>'.PHP_EOL;
-			echo '<td><!-- Test --></td>'.PHP_EOL;
-			echo '<td></td>'.PHP_EOL;
-			echo '<td></td>'.PHP_EOL;
-			echo '<td>ye</td>'.PHP_EOL;
-			echo '<td>72</td>'.PHP_EOL;
-			echo '<td></td>'.PHP_EOL;
-			echo '<td></td>'.PHP_EOL;
-			echo '<td>full</td>'.PHP_EOL;
-			echo '</tr>'.PHP_EOL;
+		$field_10Block = Block::getByID($blocks[0]->bID);	//$field_10_textbox_text
+		if (!empty($field_10Block)) {
+//			$field_10Block->display();	//Outputs ENTIRE block form view
+			echo $blCount.',';
+		} else {
+			echo $tm.'null,';
 		}
 		$tm++;
 	}
+	echo $blCount;
 ?>
+]; //END stat_data_source
+</script>
 
-</table>
-<!-- END timeline table -->
 
 			<div class="clear"></div>
 		</div><!-- END main-content-inner -->
@@ -193,56 +217,166 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 <script type="text/javascript" src="/concrete/js/jquery.ui.js"></script>
 
 <!-- FRIEND LIBS -->
+<!--
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/underscore-min.js" type="text/javascript"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/backbone-min.js" type="text/javascript"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/jquery.global.js" type="text/javascript"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/jquery.tmpl.js" type="text/javascript"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/ba-debug.min.js" type="text/javascript"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/ba-tinyPubSub.js" type="text/javascript"></script>
+-->
 <!-- <script src="<?php echo DIR_REL?>/themes/evtouch/js/jquery.ui.ipad.js" type="text/javascript"></script> -->
+
+
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/backbone-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/json2.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/ba-tinyPubSub.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.ui.ipad.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/globalize.js" type="text/javascript" charset="utf-8"></script>	
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/ba-debug.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/attrchange.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/attrchange_ext.js" type="text/javascript" charset="utf-8"></script>
 
 	
 <!-- TIMEGLIDER -->
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/TG_Date.js" type="text/javascript"></script>
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/TG_Org.js" type="text/javascript"></script>
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/TG_Timeline.js" type="text/javascript"></script> 
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/TG_TimelineView.js" type="text/javascript"></script>
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/TG_Mediator.js" type="text/javascript"></script> 
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider/timeglider.timeline.widget.js" type="text/javascript"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/TG_Date.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/TG_Org.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/TG_Timeline.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/TG_TimelineView.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/TG_Mediator.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/timeglider.timeline.widget.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/timeglider/timeglider.datepicker.js" type="text/javascript" charset="utf-8"></script>
+
+
 
 <script type="text/javascript">
-	var appCat = "<?php echo $parentName ?>";
+var appCat = "<?php echo $parentName ?>";
 
+$(document).ready(function() {
+//	$(checkForChanges);	//DIDN't work
 
-	$(document).ready(function() {
-		var tld = "timeline";
-		
-		var tg = $("#placement").timeline({
-				"min_zoom":36, 
-				"max_zoom":36, //55
-				"show_footer":true,  //hides timeglider black toolbar
-				// data source is the id of the table!
-				"display_zoom_level":true,	//Hides zoom level number in zoom tool bar
-				"data_source":"#mylife"	//Orig table
-		});
-		
-		$(".nHome").click(function(event){
-			event.preventDefault();
-			linkLocation = $(this).attr('id');
-			$("#main-bkg-inner").fadeOut(500);
-			$("#main-content-container").fadeOut(500, redirectPage);
-		});
-			 
-		function redirectPage() {
-			window.location = linkLocation;
-		}
-		
-		$("#closeIntro").click(function(event){
-//alert('close clicked');		
-			$("#intro_modal").hide();
-		});
-		
+	var tg1 = $("#placement").timeline({
+		 "data_source":tg_data_source,
+		 "min_zoom":20,
+		 "max_zoom":60,
+		 "display_zoom_level":true,
+		//         "image_lane_height":300,
+		"loaded":function () {		// loaded callback function
+//TEST			alert('Test LOAD!');
+			loadStatBuild();
+		},
 	});
+
+	
+//Add stats Loop thru div#stat-1988 add stat string
+/*
+var stat_data_obj = { year:"YYYY", stat:"1234" };
+var stat_data_arr = [];
+*/
+
+
+
+
+
+
+function loadStatBuild() {	//Called in TG loaded
+//TEST alert('loadStatBuild BEGUN');
+	$(this).delay(1000).queue(function() {	//Forces to fire after timeline divs build
+		$("div[id^='stat']").each(function(){ 	// get divs the BEGIN WITH "stat-" add to array stat_divs_arr
+			matchDiv = (this.id);	//stat-1988
+			matchDivsArr.push(matchDiv);
+	//alert('this-id: '+matchDiv);	//stat-1988
+
+			for( var i = 0; i < stat_data_arr.length; i++ ){
+				checkDate = stat_data_arr[i].year;
+	//alert(i+'checkDate: '+checkDate+' EQUALS '+matchDiv);	//0checkDate: stat-1972 EQUALS stat-1990	
+	//alert(i+'checkDate: '+checkDate);			
+				if( checkDate === matchDiv ){
+	//alert(i+'checkDate: '+checkDate+' EQUALS '+matchDiv);
+					changeText = stat_data_arr[i].stat;
+	//				$(this).append(changeText);
+					$('#'+matchDiv).html(changeText);
+	//alert('statDiv.year: '+checkDate+' statDiv.stat:'+changeText);
+	//				break;
+				}
+			
+			};
+		});	//END $("div[id^='stat']").each
+				$(this).dequeue();
+	}); //END $(this).delay(1000)
+
+}; //END loadStatBuild
+
+
+//$( ".inner" ).append( "<p>Test</p>" );
+
+
+/* DIDN'T WOORK
+function checkForChanges()
+{	//#tg-truck.div
+//    if ($('div.timeglider-handle').hasClass('ui-draggable-dragging'))
+	var leftValueLast = 0;
+	var leftValue = $('div.timeglider-handle').css("left");
+	if (leftValue != leftValueLast)
+        alert('MOVING!!! - '+leftValue);
+    else
+        setTimeout(checkForChanges, 500);
+}
+*/
+
+
+$('.timeglider-handle').attrchange({	//div.timeglider-handle  (timeglider-ticks noselect ui-draggable)
+//	var leftValue = $('div.timeglider-handle').css("left");
+    trackValues: true, // set to true so that the event object is updated with old & new values
+    callback: function(evnt) {
+    	var properties = $(this).attrchange('getProperties');
+//TEST alert(properties);	//Object
+    
+//        if(evnt.attributeName == "left") { // which attribute you want to watch for changes
+            if(evnt.newValue != evnt.oldValue) {
+//TEST alert('MOVING!!! - '+evnt.newValue);
+				loadStatBuild();
+//            }
+        }
+    }
+});
+
+/* REFERENCE
+Status: connected. Attribute Name: style Prev Value: null New Value: top: 50px
+logMessage('Status: ' + properties.status + '. Attribute Name: ' + event.attributeName + ' Prev Value: ' + event.oldValue + ' New Value: ' + event.newValue);
+
+
+var $logs = $attrchange_logger.prepend('<p>Attribute <b>' + e.attributeName +
+          '</b> changed from <b>' + e.oldValue +
+          '</b> to <b>' + e.newValue +
+          '</b></p>')
+*/
+
+	
+	
+	$(".nHome").click(function(event){
+		event.preventDefault();
+		linkLocation = $(this).attr('id');
+		$("#main-bkg-inner").fadeOut(500);
+		$("#main-content-container").fadeOut(500, redirectPage);
+	});
+		 
+	function redirectPage() {
+		window.location = linkLocation;
+	}
+	
+	$("#closeIntro").click(function(event){
+//alert('close clicked');		
+		$("#intro_modal").hide();
+	});
+	
+});
+
+//TEST alert('stat_data_arr: '+stat_data_arr);	
 </script>
 
 <?php } // END if ($isLogin == 0)

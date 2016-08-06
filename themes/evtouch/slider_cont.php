@@ -72,7 +72,10 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 //	$a->display($c);
 	
 	echo '<div class="mainInfoCont">'.PHP_EOL;
-	echo '<h3>Please click numbers on image to reveal information.</h3>'.PHP_EOL;
+
+	$hd = new Area('Header');
+	$hd->display($c);
+	
 	echo '<div class="sliderLeft">'.PHP_EOL;
 	$ml = new Area('MainLeft');
 	$ml->display($c);
@@ -91,14 +94,9 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 	
 	echo '</div><!-- END mainInfoCont -->'.PHP_EOL;
 	
-	
-	
 	$o = new Area('Overlay');
 	echo '<h3>Modal info</h3>';
 	$o->display($c);
-	
-
-
 
 	echo '<h3>Intro slide content</h3>'.PHP_EOL;
 	echo '<div class="sliderLeft">'.PHP_EOL;
@@ -132,12 +130,7 @@ foreach ($blocks as $bl) {
 		echo '</div><!-- END cont'.$i.'-->'.PHP_EOL;
 		$i++;
 	}
-
-
-
-
 ?>
-
 			<div class="clear"></div>
 <?php } //END if (isEdit == 1) ?>
 		</div><!-- END main-content-inner -->
@@ -149,8 +142,6 @@ foreach ($blocks as $bl) {
 		<div id="main-bkg-inner" class="fullScreen"></div>
 	</div>
 </div><!-- END main-bkg -->
-
-
 
 <?php
 	if ($isEdit == 1) {

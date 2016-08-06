@@ -69,3 +69,8 @@ $dt = Loader::helper('form/date_time');
 	<h2>Image caption</h2>
 	<?php  echo $form->text('field_6_textbox_text', $field_6_textbox_text, array('style' => 'width: 95%;')); ?>
 </div>
+
+<div class="ccm-block-field-group">
+	<h2>Stat Row</h2> <h3>Students Served</h3>
+	<?php  echo $form->text('field_10_textbox_text', $field_10_textbox_text, array('style' => 'width: 95%;')); ?>
+</div>

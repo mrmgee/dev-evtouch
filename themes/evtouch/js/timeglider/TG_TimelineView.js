@@ -474,7 +474,7 @@ alert('mouseout:'+ev);
 		var eid = $(this).attr("id"); 
 //		var ev = MED.eventCollection.get(eid).attributes;
 		me.eventModal(eid);	//MG
-//alert('mousedown eid:'+eid);
+alert('mousedown eid:'+eid);	//mousedown eid: ev_9
 	})
 //	*/	//MG END remove delegate mouseout
 	

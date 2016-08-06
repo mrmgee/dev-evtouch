@@ -3,6 +3,7 @@ global $c;
 global $u;
 $parent = Page::getByID($c->getCollectionParentID());
 $pageName = $parent->getCollectionHandle();
+/* $thisPageName = $c->getCollectionHandle(); */
 
 if (!empty($field_1_date_value)) $field_1_date_value = date('Y-m-d H-i-s', strtotime($field_1_date_value));
 if (!empty($field_2_date_value)) $field_2_date_value = date('Y-m-d H-i-s', strtotime($field_2_date_value));
@@ -18,15 +19,17 @@ if (!empty($field_7_select_value)){
 }
 
 //Add credit and caption to description text
-if (!empty($field_5_textbox_text)) $field_5_textbox_text = '<h5 class="credit">'.htmlentities($field_5_textbox_text, ENT_QUOTES, APP_CHARSET).'</h5>';	//Image credit
-if (!empty($field_6_textbox_text)) $field_6_textbox_text = '<h5 class="caption">'.htmlentities($field_6_textbox_text, ENT_QUOTES, APP_CHARSET).'</h5>';	//Image caption
+if (!empty($field_5_textbox_text)) $field_5_textbox_text = '<h5 class=\"credit\">'.htmlentities($field_5_textbox_text, ENT_QUOTES, APP_CHARSET).'<\/h5>';	//Image credit
+if (!empty($field_6_textbox_text)) $field_6_textbox_text = '<h5 class=\"caption\">'.htmlentities($field_6_textbox_text, ENT_QUOTES, APP_CHARSET).'<\/h5>';	//Image caption
 
 if (!empty($field_8_textbox_text)){
 	$field_8_textbox_text = htmlentities($field_8_textbox_text, ENT_QUOTES, APP_CHARSET);
 	
 }
 
-$field_description = $field_4_textarea_text.$field_6_textbox_text.$field_5_textbox_text;
+$field_4_textarea_clean = str_replace(array("\r", "\n"), '', $field_4_textarea_text);
+//$field_description = $field_4_textarea_text.$field_6_textbox_text.$field_5_textbox_text;
+$field_description = $field_4_textarea_clean.$field_6_textbox_text.$field_5_textbox_text;
 
 
 if (!empty($field_9_image)) $field_9_image = $field_9_image->src;	//Returns img01.png original name and full path
@@ -55,27 +58,44 @@ if ($u -> isLoggedIn ()) {
 } else {
 	if ($field_7_select_value != 4){	//DON'T output strand (category) Quick Facts/milestones
 ?>
-    <tr>
-      <td><?php echo $field_1_date_value ?></td>
-      <td><?php // echo $field_2_date_value ?></td>
-      <td><?php echo $field_3_textbox_text ?></td>
-      <td><?php echo $field_description ?></td>
-      <td><?php echo $catIcon ?></td>
-      <td>ye</td>
-      <td><?php echo $SelImportance; ?></td>  
-      <td><?php echo $field_8_textbox_text ?></td>
-      <td><?php echo $field_9_image ?></td>
-      <td>full</td>
-    </tr>
-
-
-
-<?php  if (!empty($field_10_textbox_text)): 	//Students Served ?>
-	<?php  echo htmlentities($field_10_textbox_text, ENT_QUOTES, APP_CHARSET); ?>
-<?php  endif; ?>
-
+tg_events_data_arr.push(
+{
+"id":"<?php echo $bID?>",
+"title": "<?php echo $field_3_textbox_text ?>",
+"description":"<?php echo $field_description ?>",
+"startdate": "<?php echo $field_1_date_value ?>",
+"high_threshold":50,
+"importance":"72",
+"date_display":"ye",
+"modal_type":"full",
+"image":"<?php echo $field_9_image ?>",
+"icon":"<?php echo $catIcon ?>"
+}
+);
 <?php
 	}	//END if (field_7_select_value != 4)
+	
+	if (!empty($field_10_textbox_text)) {	//Check if Students Served is populated
+	$startYear = substr($field_1_date_value, 0, 4); //first 4 chars = 1972 (1972-01-01 12:00:00)
+?>
+
+stat_data_arr.push({year:<?php echo '"stat-'.$startYear.'"' ?>, stat:"<?php echo $field_10_textbox_text ?>"});
+/* JS COMMENT
+{
+"id":"<?php echo $bID?>stat",
+"title": "<?php echo $field_10_textbox_text ?>",
+"description":"",
+"startdate": "<?php echo $field_1_date_value ?>",
+"enddate": "<?php echo $field_2_date_value ?>",
+"high_threshold":40,
+"importance":"60",
+"date_display":"mo",
+"icon":"none"
+},
+*/
+
+<?php
+	}	//END if (!empty($field_10_textbox_text))
 /*
 if ($c->isEditMode()) {
 	echo '</table>';
