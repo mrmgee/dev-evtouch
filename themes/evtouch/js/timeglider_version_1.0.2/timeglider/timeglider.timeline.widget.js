@@ -94,7 +94,7 @@
 			var MAIN_TEMPLATE = "<div id='tg-container' class='timeglider-container'>"
 				+ "<div class='timeglider-loading'><div>loading</div></div>"
 				+ "<div class='timeglider-centerline'></div>"
-				+ "<div id='studentsLabel'>Students served</div>" //MG
+				+ "<div id='studentsLabel'></div>" //MG
 				+ "<div class='tg-oof-count tg-oof-left'></div>"
 				+ "<div class='tg-oof-count tg-oof-right'></div>"
 				

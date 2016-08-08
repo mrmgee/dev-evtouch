@@ -2103,7 +2103,7 @@ tg.TG_TimelinePlayer.prototype = {
 
 		tid = this._views.PLACE + "_" + tickUnit + "_" + serial + "-" + this.tickNum; //#placement_ye_1984-4
 
-		$tickDiv= $("<div class='timeglider-tick " + oeClass + "' id='" + tid + "'><div id='stat-" + serial + "' class='tg-tick-stat'>XXX</div><div class='tg-tick-body'><div class='tg-tick-leftline'></div><div class='timeglider-tick-label'></div><div class='tg-tick-label-bottom'></div></div>")
+		$tickDiv= $("<div class='timeglider-tick " + oeClass + "' id='" + tid + "'><div id='stat-" + serial + "' class='tg-tick-stat'>&nbsp;</div><div class='tg-tick-body'><div class='tg-tick-leftline'></div><div class='timeglider-tick-label'></div><div class='tg-tick-label-bottom'></div></div>")
 		  .appendTo(TICKS);
 		
 		

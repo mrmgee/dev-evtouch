@@ -59,6 +59,9 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 	//	echo '<h2>YES EDIT</h2>';	//Testing
 		$o = new Area('Overlay');
 		$o->display($c);
+		
+		$statArea = new Area('Stats Label');
+		$statArea->display($c);
 			
 		$a = new Area('Main');
 		$a->display($c);
@@ -75,6 +78,11 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 			<?php
 			$o = new Area('Overlay');
 			$o->display($c);
+			
+			echo 'Stats Label';
+			$statArea = new Area('Stats Label');
+			$statArea->display($c);
+			
 			echo '<h2>Main</h2>';
 			$a = new Area('Main');
 			$a->display($c);
@@ -300,6 +308,7 @@ function loadStatBuild() {	//Called in TG loaded
 					changeText = stat_data_arr[i].stat;
 	//				$(this).append(changeText);
 					$('#'+matchDiv).html(changeText);
+					$('#'+matchDiv).addClass("sky");
 	//alert('statDiv.year: '+checkDate+' statDiv.stat:'+changeText);
 	//				break;
 				}
@@ -308,6 +317,22 @@ function loadStatBuild() {	//Called in TG loaded
 		});	//END $("div[id^='stat']").each
 				$(this).dequeue();
 	}); //END $(this).delay(1000)
+	
+	
+<?php
+$statArea = new Area('Stats Label');
+$statArray = $statArea->getAreaBlocksArray($c);
+$statBl = Block::getByID($statArray[0]->bID);
+
+	if (!empty($statBl)) {	//Check if Stats Label is populated
+		ob_start();
+		$statBl->display();
+		$statTxt = strip_tags(ob_get_clean());
+		echo '$("#studentsLabel").html("'.$statTxt.'").addClass("sky");';
+	} else {
+		echo '<!-- EMPTY Stats Label -->';
+	}
+?>
 
 }; //END loadStatBuild
 

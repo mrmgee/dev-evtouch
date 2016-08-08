@@ -17,26 +17,26 @@
 	<station_id>KPAO</station_id>
 	<latitude>37.46667</latitude>
 	<longitude>-122.11667</longitude>
-	<observation_time>Last Updated on Aug 5 2016, 12:47 pm PDT</observation_time>
-        <observation_time_rfc822>Fri, 05 Aug 2016 12:47:00 -0700</observation_time_rfc822>
-	<weather>Clear</weather>
-	<temperature_string>70.0 F (21.0 C)</temperature_string>
-	<temp_f>70.0</temp_f>
-	<temp_c>21.0</temp_c>
-	<relative_humidity>69</relative_humidity>
-	<wind_string>Northwest at 13.8 MPH (12 KT)</wind_string>
-	<wind_dir>Northwest</wind_dir>
-	<wind_degrees>330</wind_degrees>
-	<wind_mph>13.8</wind_mph>
-	<wind_kt>12</wind_kt>
-	<pressure_in>29.92</pressure_in>
-	<dewpoint_string>59.0 F (15.0 C)</dewpoint_string>
-	<dewpoint_f>59.0</dewpoint_f>
-	<dewpoint_c>15.0</dewpoint_c>
+	<observation_time>Last Updated on Aug 8 2016, 7:47 am PDT</observation_time>
+        <observation_time_rfc822>Mon, 08 Aug 2016 07:47:00 -0700</observation_time_rfc822>
+	<weather>Overcast</weather>
+	<temperature_string>59.0 F (15.0 C)</temperature_string>
+	<temp_f>59.0</temp_f>
+	<temp_c>15.0</temp_c>
+	<relative_humidity>88</relative_humidity>
+	<wind_string>Calm</wind_string>
+	<wind_dir>North</wind_dir>
+	<wind_degrees>0</wind_degrees>
+	<wind_mph>0.0</wind_mph>
+	<wind_kt>0</wind_kt>
+	<pressure_in>29.87</pressure_in>
+	<dewpoint_string>55.4 F (13.0 C)</dewpoint_string>
+	<dewpoint_f>55.4</dewpoint_f>
+	<dewpoint_c>13.0</dewpoint_c>
 	<visibility_mi>10.00</visibility_mi>
  	<icon_url_base>http://forecast.weather.gov/images/wtf/small/</icon_url_base>
 	<two_day_history_url>http://www.weather.gov/data/obhistory/KPAO.html</two_day_history_url>
-	<icon_url_name>skc.png</icon_url_name>
+	<icon_url_name>ovc.png</icon_url_name>
 	<ob_url>http://www.weather.gov/data/METAR/KPAO.1.txt</ob_url>
 	<disclaimer_url>http://weather.gov/disclaimer.html</disclaimer_url>
 	<copyright_url>http://weather.gov/disclaimer.html</copyright_url>
