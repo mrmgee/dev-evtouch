@@ -19,6 +19,21 @@ $grandParentName = $grandParent->getCollectionHandle();
 
 //$children = $grandParent->getCollectionChildrenArray($intOneLevel = 1);  // Get first-level children of $page object and put in array $children
 
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
+
+//Language check $multiLang = 0/1: English/Spanish
+$strLen = strlen($pageName); // count sting length earth=5
+$pagePathStart = substr($pagePath, 1, $strLen);  // /spn/earth/plant-animal-id --> spn/e
+
+if ($pageName != $pagePathStart){	// IF earth DOES NOT = spn/e
+	$multiLang = 1;					// Spanish
+} else {
+	$multiLang = 0;					// Use English
+}
+session_start();
+$_SESSION['firstMessage'] = $multiLang;
+
+
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo LANGUAGE?>">
@@ -59,6 +74,7 @@ $(document).ready(function() {
     });
 
     $("#langSelBtn").click(function(event){
+    	$(this).css('opacity','0.8');
     	if (langSel == '/<?php echo $pageName ?>'){
     		langSel = 1;
     		linkLocation = "/spn/<?php echo $pageName ?>/";
@@ -66,7 +82,7 @@ $(document).ready(function() {
     		langSel = '/<?php echo $pageName ?>';
     		linkLocation = '/<?php echo $pageName ?>';
     	}
-    	alert("langSel: " + langSel);
+//TEST    	alert("langSel: " + langSel);
     		$("#footer").fadeOut(1000);
     		$("#main-content-container").fadeOut(1000, redirectPage);
     }); 
@@ -128,9 +144,10 @@ $(document).ready(function() {
 		$langLnk = "English";
 		}
 
-
-		echo PHP_EOL.'<h2>'.$grandParentName.' / '.$parentName.'</h2>'.PHP_EOL; //Display page title Earth
+		echo PHP_EOL.'<h2>pagePathStart: '.$pagePathStart.' multiLang: '.$multiLang.'  = 0English/1Spanish</h2>'.PHP_EOL;
 		
+		echo PHP_EOL.'<h2>'.$grandParentName.' / '.$parentName.'</h2>'.PHP_EOL; //Display page title Earth
+/* TEST		
 		echo PHP_EOL.'<ul>'.PHP_EOL;
 		foreach ($children as $child) {
 			$childPage = Page::getByID($child);
@@ -139,7 +156,7 @@ $(document).ready(function() {
 			echo PHP_EOL.'<li>childPageName: '.$childPageName.' - '.$childPageTitle.'</li>'.PHP_EOL;  // Testing
 		}
 		echo PHP_EOL.'</ul>'.PHP_EOL;
-		
+TEST */		
 		echo PHP_EOL.'<h2>LANG: '.$langLnk.'</h2>'.PHP_EOL; //Display page title Earth
 		echo PHP_EOL.'<h2>TITLE: '.$pageTitle.'</h2>'.PHP_EOL; //Display page title Earth
 		echo PHP_EOL.'<h2>NAME: '.$pageName.'</h2>'.PHP_EOL; //Display page name earth

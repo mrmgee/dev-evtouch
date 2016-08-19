@@ -19,6 +19,9 @@ $size = sizeof($files);
 $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
+$homeURL = $parent->getCollectionPath();
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
 if ($c->isEditMode()) {
 	$isEdit = 1;
@@ -34,8 +37,8 @@ else {
 </head>
 <body>
 <!--start main container -->
-<div id="main-container-ebird" >
-	<div class="nHome <?php echo $pageName ?>"><a href="/<?php echo $pageName ?>"><span>pageName: <?php echo $pageName ?></span></a></div>
+<div id="main-container-ebird" >	<!-- /<?php echo $pageName ?> -->
+	<div class="nHome lHome<?php echo $multiLang ?> <?php echo $pageName ?>"><a href="<?php echo $homeURL ?>"><span>pageName: <?php echo $pageName ?></span></a></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container-ebird">

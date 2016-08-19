@@ -20,6 +20,9 @@ $size = sizeof($files);
 $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
+$homeURL = $parent->getCollectionPath();
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 ?>
 
 <script type="text/javascript">
@@ -30,7 +33,7 @@ $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 	
 		$(".nHome").click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});
@@ -52,7 +55,7 @@ $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 <body id="webpointer" class="<?php echo $parentName ?>">
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_16 pres-2col-vert">

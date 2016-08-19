@@ -1,4 +1,8 @@
-<?php   defined('C5_EXECUTE') or die("Access Denied."); ?>
+<?php   defined('C5_EXECUTE') or die("Access Denied."); 
+global $c;
+$pageName = $c->getCollectionHandle();
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
+?>
 </div><!-- END main container -->
 
 <div class="clear"></div>
@@ -14,7 +18,23 @@
 		<div id="footer-inner">
 		</div>
 		<div id="ack">CREDITS</div>
-		<div id="langSelBtn">Language</div>
+		<div id="langSelBtn">
+<!--		
+			<h3 class="<?php echo $pageName ?>C">Eng</h3>
+			<h4>en español</h4>
+-->
+<?php
+if ($multiLang == 0){	//$multiLang = 0; English
+	$selLangLabel = "Eng";
+	$inLang = "en español";
+	} else {
+	$selLangLabel = "Esp";
+	$inLang = "in english";
+	}
+echo'			<h3 class="'.$pageName.'C">'.$selLangLabel.'</h3>'.PHP_EOL;	
+echo'			<h4>'.$inLang.'</h4>'.PHP_EOL;
+?>
+		</div><!-- END langSelBtn -->
 	</div>
 
 <?php   Loader::element('footer_required');

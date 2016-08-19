@@ -23,6 +23,7 @@ $imgHelper = Loader::helper('image');
 $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
+$homeURL = $parent->getCollectionPath();
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
 $fileList = new FileList();
@@ -35,7 +36,7 @@ $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 
-
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 /*
 if ($isEdit == 2) {  // If in edit mode, show all blocks
 	Loader::element('header_required');
@@ -113,7 +114,7 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 <body>
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?>"><div></div></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_24">
@@ -156,8 +157,9 @@ var tg_data_source = [
 "description":"",
 "focus_date":"1990-01-20",
 "initial_zoom":"36",	//37
-"display_zoom_level":true,
-"image_lane_height":150,	//300=322 200=222 150=172
+"display_zoom_level":false,
+//"image_lane_height":150,	//300=322 200=222 150=172
+"image_lane_height":300,	//300=586h; 200=384h
 //"events":[
 "events": tg_events_data_arr
 
@@ -241,8 +243,8 @@ $childLvl1Block2 = Block::getByID($childLvl1Area[2]->bID);	//Spanish Header Gans
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/json2.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.tmpl.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/ba-tinyPubSub.js" type="text/javascript" charset="utf-8"></script>
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script>
-<script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.ui.ipad.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.mousewheel.js" type="text/javascript" charset="utf-8"></script> -->
+<!-- <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/jquery.ui.ipad.js" type="text/javascript" charset="utf-8"></script>  -->
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/globalize.js" type="text/javascript" charset="utf-8"></script>	
 <script src="<?php echo DIR_REL?>/themes/evtouch/js/timeglider_version_1.0.2/js/ba-debug.min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -271,11 +273,11 @@ $(document).ready(function() {
 		 "data_source":tg_data_source,
 		 "min_zoom":20,
 		 "max_zoom":60,
-		 "display_zoom_level":true,
+		 "display_zoom_level":false,
 		//         "image_lane_height":300,
 		"loaded":function () {		// loaded callback function
 //TEST			alert('Test LOAD!');
-			loadStatBuild();
+			delayBuild();
 		},
 	});
 
@@ -291,9 +293,13 @@ var stat_data_arr = [];
 
 
 
-function loadStatBuild() {	//Called in TG loaded
-//TEST alert('loadStatBuild BEGUN');
+function delayBuild() {	//Called in TG loaded once divs are build
 	$(this).delay(1000).queue(function() {	//Forces to fire after timeline divs build
+		loadStatBuild();
+	}); //END $(this).delay(1000)
+}; //END delayBuild
+	
+function loadStatBuild() {	//Finds divs and replaces stat text
 		$("div[id^='stat']").each(function(){ 	// get divs the BEGIN WITH "stat-" add to array stat_divs_arr
 			matchDiv = (this.id);	//stat-1988
 			matchDivsArr.push(matchDiv);
@@ -316,7 +322,7 @@ function loadStatBuild() {	//Called in TG loaded
 			};
 		});	//END $("div[id^='stat']").each
 				$(this).dequeue();
-	}); //END $(this).delay(1000)
+
 	
 	
 <?php
@@ -385,7 +391,7 @@ var $logs = $attrchange_logger.prepend('<p>Attribute <b>' + e.attributeName +
 	
 	$(".nHome").click(function(event){
 		event.preventDefault();
-		linkLocation = $(this).attr('id');
+		linkLocation = '<?php echo $homeURL ?>';
 		$("#main-bkg-inner").fadeOut(500);
 		$("#main-content-container").fadeOut(500, redirectPage);
 	});

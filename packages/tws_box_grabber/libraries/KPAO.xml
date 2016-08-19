@@ -17,23 +17,16 @@
 	<station_id>KPAO</station_id>
 	<latitude>37.46667</latitude>
 	<longitude>-122.11667</longitude>
-	<observation_time>Last Updated on Aug 8 2016, 7:47 am PDT</observation_time>
-        <observation_time_rfc822>Mon, 08 Aug 2016 07:47:00 -0700</observation_time_rfc822>
+	<observation_time>Last Updated on Aug 19 2016, 9:47 am PDT</observation_time>
+        <observation_time_rfc822>Fri, 19 Aug 2016 09:47:00 -0700</observation_time_rfc822>
 	<weather>Overcast</weather>
-	<temperature_string>59.0 F (15.0 C)</temperature_string>
-	<temp_f>59.0</temp_f>
-	<temp_c>15.0</temp_c>
-	<relative_humidity>88</relative_humidity>
 	<wind_string>Calm</wind_string>
 	<wind_dir>North</wind_dir>
 	<wind_degrees>0</wind_degrees>
 	<wind_mph>0.0</wind_mph>
 	<wind_kt>0</wind_kt>
-	<pressure_in>29.87</pressure_in>
-	<dewpoint_string>55.4 F (13.0 C)</dewpoint_string>
-	<dewpoint_f>55.4</dewpoint_f>
-	<dewpoint_c>13.0</dewpoint_c>
-	<visibility_mi>10.00</visibility_mi>
+	<pressure_in>29.93</pressure_in>
+	<visibility_mi>8.00</visibility_mi>
  	<icon_url_base>http://forecast.weather.gov/images/wtf/small/</icon_url_base>
 	<two_day_history_url>http://www.weather.gov/data/obhistory/KPAO.html</two_day_history_url>
 	<icon_url_name>ovc.png</icon_url_name>

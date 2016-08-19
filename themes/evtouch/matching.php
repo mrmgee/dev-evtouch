@@ -24,6 +24,8 @@ $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 
 $homeURL = $parent->getCollectionPath();
 
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
+
 if ($c->isEditMode()) {
 	$isEdit = 1;
 }
@@ -69,12 +71,17 @@ else {
 <body id="<?php echo $pageName ?>">
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_24">
 		<div id="main-content-inner" class="<?php echo $pageName ?>">
-		
+<?php //TEST
+/*
+$blocksAll = $c->getBlocks();
+print_r($blocksAll);
+*/
+//END TEST ?>	
 <?php	
 if ($isEdit == 1) {  // If in edit mode, show all blocks
 
@@ -220,6 +227,9 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 	$trItemTarget = array();  // Tracking Maching block item target name underscores
 
 	echo '<div id="matchMsg">'.PHP_EOL;  // Feedback msg container div
+
+$blocks = $a->getAreaBlocksArray($pageCont);
+
 
 	foreach ($blocks as $b) {
 		$blTypeName = $b->getBlockTypeHandle();

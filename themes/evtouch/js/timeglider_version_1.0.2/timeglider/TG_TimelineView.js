@@ -1893,8 +1893,9 @@ tg.TG_TimelinePlayer.prototype = {
 	},
 
 
-	
 	eventHover : function ($ev, ev) {
+//MG remove eventHover
+/*
 		
 		var follow = true;
 		
@@ -1935,6 +1936,8 @@ tg.TG_TimelinePlayer.prototype = {
 			  	.html(title + date_line)
 		  	}
 		}
+*/  
+//MG END remove eventHover
 	},
 
 	
@@ -1951,7 +1954,7 @@ tg.TG_TimelinePlayer.prototype = {
 			}
 		}
 	},
-  
+
   
     
 	clearTicks : function () {
@@ -2132,7 +2135,7 @@ tg.TG_TimelinePlayer.prototype = {
 				sub_label = "&nbsp;";
 				
 				
-				if (dist > 16) {
+				if (dist > 20) { //MG
 				
 					if (tickUnit == "da") {
 						// hours starting with 0

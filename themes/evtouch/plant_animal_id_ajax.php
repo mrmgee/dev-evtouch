@@ -13,6 +13,7 @@ $pageCont = Page::getByID(137, $version = 'RECENT');
 $pagePath = $c->getCollectionPath();
 
 $parent = Page::getByID($c->getCollectionParentID());
+$parentName = $parent->getCollectionHandle();
 $pageName = $parent->getCollectionHandle();
 $pageTitle = $parent->getCollectionName();
 
@@ -29,6 +30,7 @@ $size = sizeof($files);
 $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
+$homeURL = $parent->getCollectionPath();
 
 $multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
@@ -85,7 +87,7 @@ else {
 		
 		$(".nHome").click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});
@@ -109,7 +111,8 @@ else {
 
 <!--START main container -->
 <div id="main-container">
-	<div id="/<?php echo $pageName ?>" class="nHome <?php echo $pageName ?>"><div></div></div>
+<!--	<div id="/<?php echo $pageName ?>" class="nHome <?php echo $pageName ?>"><div></div></div> -->
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="footer">
 		<div class="<?php echo $pageName ?>"><h3></h3></div>
 		<!-- <a href="#0"></a> -->

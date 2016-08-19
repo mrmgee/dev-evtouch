@@ -323,7 +323,8 @@
 										+ "height:" + ((b.height*2)+12) + "px;"		//35>82
 										+ "left:" + b.left  + "px;" 
 										+ "opacity:" + b.opacity + ";"
-										+ "top:" + ((b.top + top_or_bottom_padding_from_title)*2) + "px;"
+//										+ "top:" + ((b.top + top_or_bottom_padding_from_title)*2) + "px;"	//ORIG -88px
+										+ "top:" + (((b.top + top_or_bottom_padding_from_title)*2)-28) + "px;"	//MG -80 -96px 116
 										+ "font-size:" + Math.round(((b.fontsize)/2)+9) + "px;'>"	// 30/2=15+9=24
 										+ icon + img + span_div;
 										

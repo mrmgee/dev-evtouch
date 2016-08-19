@@ -11,6 +11,7 @@ $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
+$homeURL = $parent->getCollectionPath();
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
 $fileList = new FileList();
@@ -45,7 +46,7 @@ else {
 	$(document).ready(function() {
 		$(".nHome").click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});
@@ -263,7 +264,7 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_24">

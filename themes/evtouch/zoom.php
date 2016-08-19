@@ -12,9 +12,7 @@ $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
-//$pageURL = $c->getCollectionURL();
-$homeURL = $parent->getCollectionPath();
-$handle = $c->getCollectionTypeHandle();
+$pageType = $c->getCollectionTypeHandle();
 
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
@@ -27,6 +25,9 @@ $size = sizeof($files);
 $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
+$homeURL = $parent->getCollectionPath();
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
 if ($u -> isLoggedIn ()) {  // Check login
 	if ($c->isEditMode()) {  // if YES Login and YES Edit
@@ -90,7 +91,6 @@ if ($isEdit == 0) {  // IF logged-in don't output JS
 		
 		$(".nHome").click(function(event){
 			event.preventDefault();
-//			linkLocation = $(this).attr('id');
 			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
@@ -112,10 +112,10 @@ if ($isEdit == 0) {  // IF logged-in don't output JS
 <link rel="stylesheet" type="text/css" href="<?php echo DIR_REL?>/packages/lightboxed_image/blocks/lightboxed_image/css/theme1/colorbox.css" />
 
 </head>
-<body id="<?php echo $handle.'-'.$pageName ?>">
+<body id="<?php echo $pageName ?>" class="<?php echo $pageType ?>">
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_24">
@@ -149,21 +149,20 @@ $overlayBl =  $o->getAreaBlocksArray($pageCont);
 
 // Instructions overlay
 echo '<div id="over'.$ii.'" class="inOverlayCont '.$parentName.'">'.PHP_EOL;
-$ii = 1;
-foreach ($introBl as $intro) {
-	if ($ii == 1) {
-		$intro->display();
-	} else if ($ii == 2) {  //Start btn label
-		echo '<div class="closeCb">';
-		ob_start();
-		$intro->display();
-		$html1 = strip_tags(ob_get_clean());
-		echo $html1;
-		echo '</div>'.PHP_EOL;
+$introBl[0]->display();
+if (count($introBl) != 1){
+	echo '<div class="closeCb">';
+	ob_start();
+	$introBl[1]->display();
+	$html1 = strip_tags(ob_get_clean());
+	echo $html1;
+	echo '</div>'.PHP_EOL;
+} else {
+	if ($multiLang == 0){
+		echo '<div class="closeCb">Start &gt;</div>';
 	} else {
-
-	}	
-	$ii++;
+		echo '<div class="closeCb">Comienzo &gt;</div>';
+	}
 }
 echo '</div><!-- END cont'.$ii.' -->'.PHP_EOL;
 ?>

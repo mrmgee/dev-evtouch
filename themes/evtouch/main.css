@@ -241,24 +241,53 @@ div#main-container .ccm-tags-display ul.ccm-tag-list li {
 	text-transform: uppercase;
 }
 #langSelBtn {
+	display: block;
 	position: absolute;
 	right: 20px;
-	bottom: 50px;
-	width: 200px;
-	height: 10px;
+	top: 10px;
+	width: 142px;
+	height: 64px;
 	margin: 0;
-	padding: 40px 0 5px 0;
+	padding: 0;
 	font-size: 14px;
 	text-align: right;
-	color:#FFF;
+	color:#000;
+	border-radius: 8px;
+	background-color: #FFF;
 	opacity: 0.4;
-	display: block;
-/*	border: 1px solid #000; */
 }
+
+#langSelBtn h3 {
+	position: absolute;
+	top: 4px;
+	left: 2px;
+	width: 138px;
+/*	margin: 0 4px 0 4px; */
+	margin: 0;
+	padding: 0;
+	font-size: 34px;
+	font-weight: 500;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#langSelBtn h4 {
+	position: absolute;
+	bottom: 6px;
+	left: 2px;
+	width: 138px;
+	margin: 0;
+	padding: 0;
+	color:#000;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
 #ack {
 	position: absolute;
 	right: 20px;
-	bottom: 20px;
+	bottom: 8px;
 	width: 200px;
 	height: 10px;
 	margin: 0;
@@ -440,7 +469,12 @@ ul.nav li a span { display: none; }
 	height:50px;
 	-webkit-border-radius:26px;
 }
-
+.lHome0 div, .lHome0 a {
+	background-position: 0 0;
+}
+.lHome1 div, .lHome1 a {
+	background-position: 0 50px;
+}
 
 div#main-container #footer #footer-inner {
 	padding-top: 44px;	
@@ -1313,17 +1347,14 @@ h4.sunSet {
 	top: 280px;
 	left: 550px;
 	width: 640px;
-/*	max-height: 600px; */
-/*	margin: 420px auto 0 auto; */
-/*	padding: 44px 94px 94px 10px; */
 	padding: 44px;
 	color:#000;
-/*	background-color: #FFF; */
+	text-align: center;
 	opacity: 1.0;
 	border-radius:8px;
 	z-index: 105;
 }
-#over1.inOverlayCont, #salt-marsh-plants .inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont, [id^="zoom"] .inOverlayCont {
+#over1.inOverlayCont, #tides .inOverlayCont, #end1.inOverlayCont, #mammals-match #cont2.inOverlayCont, #birds-matching #cont2.inOverlayCont, body.zoom .inOverlayCont {
 	position: absolute;
 /*	top: 250px; */
 	top: 15%;
@@ -1332,6 +1363,7 @@ h4.sunSet {
 /*	width: 1330px; 1330 - (40x2) = 1250 */
 	width: 1250px;
 	padding: 40px;
+	
 	color:#000;
 	opacity: 1.0;
 	border-radius:8px;
@@ -1374,20 +1406,25 @@ h4.sunSet {
 }
 
 .inOverlayCont .closeCb {
-	width: 120px;
+/*	width: 18%;	*/		/* 120px */
 	height: 36px;
 	margin: 20px auto 0 auto;
-	padding: 8px 0 0 20px;
+	
+/*	margin-left: auto !important;
+  	margin-right: auto !important; */
+	
+	padding: 8px;		/* 8px 8px 0 20px */
 	font-size: 32px;
 	font-weight: 500;
+	text-align: center;
 	background-color: #FFF;
 	-webkit-border-radius: 8px;
-	display: block;
+	display: inline-block;		/* block */
 	border-radius: 8px;
 }
 
 .closeCb {
-	width: 100px;
+/*	width: 100px; */
 	height: 30px;
 	margin: 0;
 	padding: 10px 0 0 20px;

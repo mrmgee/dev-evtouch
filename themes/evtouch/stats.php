@@ -6,6 +6,9 @@
 Loader::model('file_list');
 Loader::model('file_set');
 $date = Loader::helper('date');
+$page = Page::getCurrentPage();
+$pageID = $page->getCollectionID();
+$pageCont = Page::getByID($pageID, $version = 'RECENT');
 $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
@@ -15,11 +18,16 @@ $fileList = new FileList();
 $fileList->filterBySet($fs);
 $fileList->filterByType(FileType::T_IMAGE); 
 $files = $fileList->get(100,0); //limit it to 100 pictures
+$a = new Area('Main');
+$p = new Area('Phases');
 
 $size = sizeof($files);
 $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
+$homeURL = $parent->getCollectionPath();
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
 $feedUrl = $_SERVER['DOCUMENT_ROOT'].'/packages/tws_box_grabber/libraries/weather.xml'; //Read from local cached file
 $rawFeed = file_get_contents($feedUrl);
@@ -45,6 +53,36 @@ $windDir = $dirsCal[round($windDirFull/45)];
 
 $tempFull = (float)$myweather->data->r->v3;
 $temp = number_format($tempFull);  //rounds up from decimal
+
+//Multilanguage Labels setup
+$statsMainBl = $a->getAreaBlocksArray($pageCont);
+$blArr = array();  // Array for blocks with corresponding language in Main
+$moonPhasesBl = $p->getAreaBlocksArray($pageCont);
+$phaseArr = array();  // Array for blocks in Moon Phases
+$ip = $multiLang;
+			
+//Loop through Area Main and get text from all blocks
+foreach ($statsMainBl as $statsLabel) {
+	$statsTidesSrc = $statsLabel; //Block0 in Area Main
+	ob_start();
+	$statsTidesSrc->display();
+	$statsTides = strip_tags(ob_get_clean());
+	array_push($blArr, $statsTides);
+}
+foreach ($moonPhasesBl as $statsLabel) {
+	$statsTidesSrc = $statsLabel; //Block0 in Area Main
+	ob_start();
+	$statsTidesSrc->display();
+	$statsTides = strip_tags(ob_get_clean());
+	array_push($phaseArr, $statsTides);
+}
+
+if ($c->isEditMode()) {
+	$isEdit = 1;
+}
+else {
+	$isEdit = 0;
+}
 ?>
 	<script type="text/javascript">
 		var appCat = "<?php echo $pageName ?>";
@@ -52,7 +90,7 @@ $temp = number_format($tempFull);  //rounds up from decimal
 		$(document).ready(function() {
 			$(".nHome").click(function(event){
 				event.preventDefault();
-				linkLocation = $(this).attr('id');
+				linkLocation = '<?php echo $homeURL ?>';
 				$("#main-bkg-inner").fadeOut(500);
 				$("#main-content-container").fadeOut(500, redirectPage);
 			});
@@ -68,32 +106,59 @@ $temp = number_format($tempFull);  //rounds up from decimal
 
 <!--START main container -->
 <div id="main-container">
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
-
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 <!--END header -->
-
 	<div class="clear"></div>
 
 	<div id="main-content-container" class="grid_24 stats">
 		<div id="main-content-inner" class="stats">
-			<div class="header main <?php echo $parentName ?>">
-				<h1>Stats for <?php print $date->getLocalDateTime('now', 'F d, Y'); ?></h1>
+<?php	
+if ($isEdit == 1) {  // If in edit mode, show all blocks
+	echo '<div style="border:1px #fe66ee solid">'.PHP_EOL;
+	echo '<h2>Stat Labels</h2>'.PHP_EOL;
+	$a = new Area('Main');
+	$a->display($c);
+	echo '</div>'.PHP_EOL;
+	echo '<div style="border:1px #666666 solid">'.PHP_EOL;
+	echo '<h2>Moon Phases</h2>'.PHP_EOL;
+	$p = new Area('Phases');
+	$p->display($c);
+	echo '</div>'.PHP_EOL;
+	
+} else {   // If NOT edit mode output slides
+$blArrInd = $multiLang;
+
+if ($multiLang == 0){	//$multiLang = 0; English
+	$dateHeader = 'Stats for '.$date->getLocalDateTime('now', 'F d, Y');
+} else {
+	$spnNowDate = $date->getLocalDateTime('now', 'Y m d w');
+	$ano = substr($spnNowDate, 0, 4);  // 2016
+	$mesZero = substr($spnNowDate, 5, 2);  // start 4th 2 chars
+	$mes += $mesZero;
+	$diaZero = substr($spnNowDate, 8, 2);  // start 8th 2 chars
+	$dia += $diaZero;
+	$diasemana = substr($spnNowDate, -1);  // Last char
+	$diassemanaN = array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+	$mesesN = array("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+	$dateHeader ='Estadísticas representa el '.$dia.' de '.$mesesN[($mes-1)].' de '.$ano;
+	
+}
+?>
+			<div class="header main <?php echo $parentName; ?>">
+				<h1><?php echo $dateHeader; ?></h1>			
 			</div>
-			<div class="statCont scTides">
-				<h2>Tides</h2>
-				<h2>Mareas</h2>
+			<div class="statCont scTides">			
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>	
 				<img id="graph1" src="/packages/tws_box_grabber/libraries/thumbnails/9414523_wl_24.png" width="700px" ondragstart="return false">
-				
-				<h3>Last updated <?php echo $weatherTime ?><br>
-				Última actualización <?php echo $weatherTime ?></h3>
+				<h3><?php echo $blArr[$blArrInd]; $blArrInd += 2; echo ' '.$weatherTime ?></h3>			
 			</div>
 			<div class="statCont scRight">
-			
-			
+
 			<div class="statCont scMoon">
-				<h2>Moon Phase</h2>
-				<h2>Fase de la Luna</h2>
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>
 <?php
+$myVal = 0;
+
 function moon_phase($year, $month, $day){
 	$c = $e = $jd = $b = 0;
 	if ($month < 3) {
@@ -113,64 +178,26 @@ function moon_phase($year, $month, $day){
 	if ($b >= 8 ){
 		$b = 0;//0 and 8 are the same so turn 8 into 0
 	}
-	$phaseCl = 'moon'.$b;
-
-	switch ($b) {
-		case 0:
-			$phaseNm = 'New Moon<br>Luna Nueva';
-			break;
-		
-		case 1:
-			$phaseNm = 'Waxing Crescent Moon<br>Luna Nueva Visible';
-			break;
-
-		case 2:
-			$phaseNm = 'First Quarter Moon<br>Luna Cuarto Creciente';
-			break;
-
-		case 3:
-			$phaseNm = 'Waxing Gibbous Moon<br>Luna Gibada Cresiente';
-			break;
-
-		case 4:
-			$phaseNm = 'Full Moon<br>Luna Liena';
-			break;
-
-		case 5:
-			$phaseNm = 'Waning Gibbous Moon<br>Luna Gibada Menguante';
-			break;
-
-		case 6:
-			$phaseNm = 'Third Quarter Moon<br>Luna Cuarto Menguante';
-			break;
-
-		case 7:
-			$phaseNm = 'Waning Crescent Moon<br>Luna Menguante';
-			break;
-			
-		default:
-			$phaseNm = 'Error';
-	}
-	
-	$phase = '<h3>'.$phaseNm.'</h3><div id="statMoon" class="'.$phaseCl.'"></div>';
-	return $phase;
+	return $b;
 }  // END function moon_phase
 
 $timestamp = time();
-echo moon_phase(date('Y', $timestamp), date('n', $timestamp), date('j', $timestamp));
+$myVal = moon_phase(date('Y', $timestamp), date('n', $timestamp), date('j', $timestamp));		//0-7 4 Full moon
+
+$phaseArrInd = ($myVal*2)+$multiLang; //Check language add 0 or 1
+
+echo '<h3>'.$phaseArr[$phaseArrInd].'</h3><div id="statMoon" class="moon'.$myVal.'"></div>'.PHP_EOL;
 ?>
 			</div>
 
 			<div class="statCont scSm wind">
-				<h2>Windspeed/Direction</h2>
-				<h2>Velocidad/Dirección del Viento</h2>
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>
 				<h3><?php echo $windDir ?></h3>
 				<h3><?php echo $windSpeed ?><i>/MPH</i></h3>
 			</div>
 			
 			<div class="statCont scSm humidity">
-				<h2>Humidity/Rainfall</h2>
-				<h2>Humedad/Lluvia</h2>
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>
 				<h3><?php echo $humid ?>%</h3>
 				<h3><?php echo $rainFall ?><i>in</i></h3>
 			</div>
@@ -178,13 +205,11 @@ echo moon_phase(date('Y', $timestamp), date('n', $timestamp), date('j', $timesta
 			<div class="clear"></div>
 
 			<div class="statCont temp">
-				<h2>Temperature</h2>
-				<h2>Temperatura</h2>
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>
 				<h3><?php echo $temp ?>° F</h3>
 			</div>
 			<div class="statCont sun">
-				<h2>Sunrise/Sunset</h2>
-				<h2>Salida/Puesta del sol</h2>
+				<h2><?php echo $blArr[$blArrInd]; $blArrInd += 2; ?></h2>
 <?php
 /* calculate the sunset time for Duck Pond Palo Alto, CA
 Latitude: 37.454744  North
@@ -212,17 +237,12 @@ $sunSetAMP = substr($sunSetFull, -2);
 				<h4><?php echo $sunSetNum.'<i>'.$sunSetAMP.'</i>' ?></h4>
 			</div>
 		</div><!-- END statCont scRight -->
-			<?php  
-			$a = new Area('Main');
-			$a->display($c);
-			?>
 			<div class="clear"></div>
-		</div>
-	
+<?php			
+}  // END  else {} NOT edit mode output slides
+?>
+		</div><!-- END main-content-inner -->
 	</div>
-	
-	<!-- end full width content area -->
-	
 </div><!-- END main container -->
 
 <!-- FOOTER START main-bkg -->

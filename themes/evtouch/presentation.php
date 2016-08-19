@@ -10,6 +10,7 @@ $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
+$homeURL = $parent->getCollectionPath();
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
 $fileList = new FileList();
@@ -22,6 +23,8 @@ $random = rand(0, $size - 1);
 $theFile = $files[$random];
 $theFilePath = $theFile->getRecentVersion()->getRelativePath();
 $pgNameArr = array();  // Page name array
+
+$multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 ?>
 
 <script type="text/javascript">
@@ -31,7 +34,7 @@ $pgNameArr = array();  // Page name array
 	$(document).ready(function() {
 		$(".nHome").click(function(event){
 			event.preventDefault();
-			linkLocation = $(this).attr('id');
+			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
 		});
@@ -58,7 +61,7 @@ $pgNameArr = array();  // Page name array
 <body id="<?php echo $pageName ?>">
 <!--start main container -->
 <div id="main-container" >
-	<div id="/<?php echo $parentName ?>" class="nHome <?php echo $parentName ?>"><div></div></div>
+	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
 	<div class="clear"></div>
 
 <!-- ORIG -->
@@ -67,6 +70,17 @@ $pgNameArr = array();  // Page name array
 
 	<div id="main-content-container" class="grid_24">
 		<div id="main-content-inner">
+
+
+<?php // - - - - - - - - - TEST
+$a = new Area('Main');
+	$a->display($c);
+
+/*
+$blocksAll = $c->getBlocks();
+print_r($blocksAll);
+*/
+//END - - - - - - - - -  TEST ?>
 
 			<script type="text/javascript">
 			if (!(typeof easy_slider_slideshow != 'undefined')) {
