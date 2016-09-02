@@ -6,7 +6,8 @@ html {
 	height: auto;
 }
 
-body { font-family: Gotham, “Helvetica Neue”, Helvetica, Arial, sans-serif; }
+body { font-family: Gotham, sans-serif; }
+/* body { font-family: Gotham, “Helvetica Neue”, Helvetica, Arial, sans-serif; } */
 
 body, ul.nav { margin:0;padding:0; }
 .nHome a span { display:none; }
@@ -870,7 +871,7 @@ h4.needCont {
 	margin: 0 15px 0 0;
 	padding: 0;
 }
-.aLeft .presImgCredit:last-child {
+.aLeft .presImgCredit:last-child, div.aTop .presImgCredit:last-child {
 	margin: 0;
 }
 .presImgCredit .credit {
@@ -990,14 +991,15 @@ h4.needCont {
 
 /* Zoom Page styles */
 .zoomBkg {
-
+/* FOR Salt Marsh Plants
 	position: absolute;
 	top: 0;
 	left: 0;
-/*
+*/
+
 	position: relative;
 	float: left;
-*/
+
 	margin: 0 40px 0 0;
 	display: block;
 	z-index: -9;
@@ -1378,7 +1380,7 @@ h4.sunSet {
 	opacity: 1.0;
 	border-radius:8px;
 }
-#over1.inOverlayCont p, #salt-marsh-plants .inOverlayCont p, #end1 p, #salt-marsh-plants #end1 p, #tides .inOverlayCont p {
+.inOverlayCont p, #over1.inOverlayCont p, #salt-marsh-plants .inOverlayCont p, #end1 p, #salt-marsh-plants #end1 p, #tides .inOverlayCont p {
 	margin: 20px 20px 30px 20px;
 	padding: 0;
 	color: #FFF;
@@ -1391,20 +1393,32 @@ h4.sunSet {
 	margin: 20px 20px 0 20px;
 }
 
-#mammals-match .inOverlayCont p, .inOverlayCont p {
+#mammals-match .inOverlayCont p  {
 	margin: 0 110px 0 110px;
 	padding: 0;
 	color: #FFF;
 	font-size: 34px;
 	font-weight: 500;
 	line-height: 44px;
-	text-align: center;
+	text-align: left;
 }
+/*
+.inOverlayCont p {
+	margin: 0 110px 0 110px;
+	padding: 0;
+	color: #FFF;
+	font-size: 34px;
+	font-weight: 500;
+	line-height: 44px;
+	text-align: left;
+}
+*/
+/*
 #mammals-match #cont2.inOverlayCont p, #birds-matching #cont2.inOverlayCont p {
 	margin: 0 110px 30px 110px;
 	text-align: left;
 }
-
+*/
 .inOverlayCont .closeCb {
 /*	width: 18%;	*/		/* 120px */
 	height: 36px;
@@ -1451,7 +1465,7 @@ h4.sunSet {
 	width: 135px;
 	height: 30px;
 	margin: 0 0 0 20px;
-	padding: 10px 0 0 0;
+	padding: 8px;
 	color: #FFF;
 	font-size:24px;
 	font-weight:500;
@@ -1642,21 +1656,25 @@ body .intro .startBtn p {
 #slider .sliderRight ol li span {color:#000; font-size: 30px; font-weight: 600;}
 
 .slDetBtn {
+/*
 	position: absolute;
 	bottom: 40px;
 	right: 60px;
 	width: 100px;
+*/	
+	float: right;
 	height: 30px;
-	margin: 0;
-	padding: 10px 0 0 10px;
+	margin: auto 0;
+	padding: 8px;
 	color: #FFF;
 	font-size: 20px;
 	font-weight: 500;
 /*	background-color: #FFF; */
 	-webkit-border-radius: 8px;
-	display: block;
+	display: inline-block;	/* block */
 	border-radius: 8px;
 }
+
 
 /* #main1Info */
 

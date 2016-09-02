@@ -17,19 +17,26 @@
 	<station_id>KPAO</station_id>
 	<latitude>37.46667</latitude>
 	<longitude>-122.11667</longitude>
-	<observation_time>Last Updated on Aug 19 2016, 9:47 am PDT</observation_time>
-        <observation_time_rfc822>Fri, 19 Aug 2016 09:47:00 -0700</observation_time_rfc822>
-	<weather>Overcast</weather>
-	<wind_string>Calm</wind_string>
+	<observation_time>Last Updated on Aug 30 2016, 4:47 pm PDT</observation_time>
+        <observation_time_rfc822>Tue, 30 Aug 2016 16:47:00 -0700</observation_time_rfc822>
+	<weather>Clear and Breezy</weather>
+	<temperature_string>75.0 F (24.0 C)</temperature_string>
+	<temp_f>75.0</temp_f>
+	<temp_c>24.0</temp_c>
+	<relative_humidity>61</relative_humidity>
+	<wind_string>North at 20.7 MPH (18 KT)</wind_string>
 	<wind_dir>North</wind_dir>
-	<wind_degrees>0</wind_degrees>
-	<wind_mph>0.0</wind_mph>
-	<wind_kt>0</wind_kt>
-	<pressure_in>29.93</pressure_in>
-	<visibility_mi>8.00</visibility_mi>
+	<wind_degrees>350</wind_degrees>
+	<wind_mph>20.7</wind_mph>
+	<wind_kt>18</wind_kt>
+	<pressure_in>29.92</pressure_in>
+	<dewpoint_string>60.8 F (16.0 C)</dewpoint_string>
+	<dewpoint_f>60.8</dewpoint_f>
+	<dewpoint_c>16.0</dewpoint_c>
+	<visibility_mi>10.00</visibility_mi>
  	<icon_url_base>http://forecast.weather.gov/images/wtf/small/</icon_url_base>
 	<two_day_history_url>http://www.weather.gov/data/obhistory/KPAO.html</two_day_history_url>
-	<icon_url_name>ovc.png</icon_url_name>
+	<icon_url_name>skc.png</icon_url_name>
 	<ob_url>http://www.weather.gov/data/METAR/KPAO.1.txt</ob_url>
 	<disclaimer_url>http://weather.gov/disclaimer.html</disclaimer_url>
 	<copyright_url>http://weather.gov/disclaimer.html</copyright_url>

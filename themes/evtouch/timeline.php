@@ -58,6 +58,12 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 <?php 	
 	if ($c->isEditMode()) {  // If in edit mode, show all blocks
 	//	echo '<h2>YES EDIT</h2>';	//Testing
+		echo '<h2>Settings</h2>
+		<p>year,zoom (ex. EV History: 1990,36)</p>
+		<p>Midpoint year timeline starts on. Zoom level default 36; 30=month, 50=decade.</p>';
+		$s = new Area('Settings');
+		$s->display($c);
+	
 		$o = new Area('Overlay');
 		$o->display($c);
 		
@@ -74,9 +80,12 @@ if ($isEdit == 1) {  // IF logged-in but NOT Edit don't output JS
 
 	<div id="main-content-container" class="paEdit">
 		<div id="main-content-inner">
-			<!-- <table> -->
-			<h2>Overlay</h2>
 			<?php
+			echo 'year,zoom:';
+			$s = new Area('Settings');
+			$s->display($c);
+			
+			echo '<h2>Overlay</h2>';
 			$o = new Area('Overlay');
 			$o->display($c);
 			
@@ -145,9 +154,34 @@ var stat_data_obj = {};
 var stat_data_arr = [];
 var matchDivsArr = [];
 
-<?php
+<?php	
 	$a = new Area('Main');
 	$a->display($c);
+
+	$s = new Area('Settings');
+	$settingsArray = $s->getAreaBlocksArray($c);
+	
+	if (count($settingsArray) != 0){  // IF array IS NOT empty
+		$settingsBl = Block::getByID($settingsArray[0]->bID);
+		ob_start();
+		$settingsBl->display();
+		$settingsBlClean = strip_tags(ob_get_clean());
+		$settingsValArr = explode(',', $settingsBlClean);
+		if(is_numeric($settingsValArr[0]) && $settingsValArr[0] >= 1000 && $number <= 9999) { //Check 4digit number for year
+			$settingsValArr[0] = $settingsValArr[0];
+		} else {
+			$settingsValArr[0] = 1990;
+		}
+		if(is_numeric($settingsValArr[1]) && $settingsValArr[1] >= 1 && $number <= 99) {
+			$settingsValArr[1] = $settingsValArr[1];
+		} else {
+			$settingsValArr[1] = 36;
+		}
+			
+		
+	} else {
+		$settingsValArr = [1990,36];
+	}
 ?>
 
 var tg_data_source = [
@@ -155,8 +189,8 @@ var tg_data_source = [
 "id":"js_history",
 "title":"Environmental Volunteers History",
 "description":"",
-"focus_date":"1990-01-20",
-"initial_zoom":"36",	//37
+"focus_date":"<?php echo $settingsValArr[0] ?>-01-20",	//1990-01-20
+"initial_zoom":"<?php echo $settingsValArr[1] ?>",	//36
 "display_zoom_level":false,
 //"image_lane_height":150,	//300=322 200=222 150=172
 "image_lane_height":300,	//300=586h; 200=384h

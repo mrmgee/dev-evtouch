@@ -3,6 +3,8 @@
 <html lang="<?php echo LANGUAGE?>">
 <head>
 <?php   Loader::element('header_required');
+global $c;
+global $u;
 Loader::model('file_list');
 Loader::model('file_set');
 //$page = Page::getCurrentPage();
@@ -72,12 +74,28 @@ $mBkg = new Area('Background');
 $plidHeaderArea = $hd->getAreaBlocksArray($pageCont);
 $plidCatArea = $cat->getAreaBlocksArray($pageCont);
 
+/*
 if ($c->isEditMode()) {
 	$isEdit = 1;
 }
 else {
 	$isEdit = 0;
 }
+*/
+
+if ($u -> isLoggedIn()) {  // Check login
+	$isLoggedIn = 1;
+	if ($c->isEditMode()) {  // if YES Login and YES Edit
+		$isEdit = 1;
+	}
+	else {   // if YES Login and NO Edit
+		$isEdit = 0;
+	}
+} else { // if NO Login
+	$isLoggedIn = 0;
+	$isEdit = 0;
+}
+
 ?>
 <script type="text/javascript">
 	var appCat = "<?php echo $pageName ?>";
@@ -122,8 +140,32 @@ else {
 	<div id="main-content-container">
 		<div id="main-content-inner">
 <?php	
-if ($isEdit == 1) {  // If in edit mode, show all blocks
-	echo '<div style="border:1px #fe66ee solid">'.PHP_EOL;
+//if ($isEdit == 1) {  // If in edit mode, show all blocks
+
+//Edit mode show Main area
+if ($isLoggedIn == 1) { //Logged in
+?>
+<script type="text/javascript">	
+	$(document).ready(function() {
+<?php	
+	if ($isEdit == 0) {	//NOT Edit mode
+?>
+//Add instructions to button label block
+		$('#editBlocks h1').each(function(){
+			$(this).css('border-top','2px solid #ff33ee');
+		});
+		$('#editBlocks p').each(function(){
+			$(this).css('border-top','1px solid #000000');
+		});
+<?php	
+	} //END	if ($isEdit == 0)
+?>	
+	});
+</script>
+
+<?php
+//////
+	echo '<div id="editBlocks">'.PHP_EOL;
 	$hd = new Area('Header');
 	$hd->display($c);
 	$cat = new Area('Categories');
@@ -220,8 +262,11 @@ foreach ($children as $child) {
 	
 	$hd = new Area('Header');
 	$childHeaderArea = $hd->getAreaBlocksArray($childPage);
-	$childHeaderBlock0 = Block::getByID($childHeaderArea[0]->bID);	//English Header Geese
-	$childHeaderBlock1 = Block::getByID($childHeaderArea[1]->bID);	//Spanish Header Gansos	
+	$childHeaderBlock0 = Block::getByID($childHeaderArea[0]->bID);	//English Header Bird Shape
+	$childHeaderBlock1 = Block::getByID($childHeaderArea[1]->bID);	//English Sub Touch the closest match of the bird you saw.	
+	$childHeaderBlock2 = Block::getByID($childHeaderArea[2]->bID);	//Spanish Header La forma del Pájaro
+	$childHeaderBlock3 = Block::getByID($childHeaderArea[3]->bID);	//Spanish Sub Toca el valor más cercano del ave que viste.	
+
 	
 //echo PHP_EOL.'<p>child: '.$child.' | childPageName: '.$childPageName.'</p>'.PHP_EOL;
 /*
@@ -238,9 +283,41 @@ foreach ($children as $child) {
 	if ($childPageName == "birds-id"){
 		echo PHP_EOL.'				<div id="main1" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 //		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Bird Shape</h1><h3>Touch the closest match of the bird you saw.</h3></div>'.PHP_EOL;
-		echo PHP_EOL.'				<div class="header selCat '.$pageName.'">';
+		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>';
 
+		if (count($childHeaderArea) != 0){  // IF array IS NOT empty
+			ob_start();
+			if ($multiLang == 0){	//$multiLang = 0; English
+				$childHeaderBlock0 ->display();
+			} else {
+				$childHeaderBlock2 ->display();
+			}
+			$html0 = strip_tags(ob_get_clean());
+			echo $html0;
+		} else {
+			echo $childLvl1Name;
+		}
+		echo '</h1><h3>';
+		if (count($childHeaderArea) != 0){  // IF array IS NOT empty
+			ob_start();
+			if ($multiLang == 0){	//$multiLang = 0; English
+				$childHeaderBlock1 ->display();
+			} else {
+				$childHeaderBlock3 ->display();
+			}
+			$html1 = strip_tags(ob_get_clean());
+			echo $html1;
+		} else {
+			if ($chdLvl1parentPageName == "birds-id"){
+				$matchWord = "bird";
+			} else {
+				$matchWord = "plant";
+			}
+			echo 'TEST Touch the closest match of the '.$matchWord.' you saw.';
+		}
+		echo '</h3></div>'.PHP_EOL;
 
+/* // / / / / / /
 		if (count($childHeaderArea) != 0){  // IF array IS NOT empty
 			if ($multiLang == 0){	//$multiLang = 0; English
 				$childHeaderBlock0 ->display();
@@ -251,6 +328,8 @@ foreach ($children as $child) {
 			echo $childPageName;
 		}
 		echo '</div>'.PHP_EOL;
+// / / / / / /		*/
+		
 		echo '							<ul class="birdShapesNav lvl1">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 
 	// List child pages for bird shapes
@@ -346,20 +425,39 @@ foreach ($children as $child) {
 	if ($childPageName == "plants"){
 		echo PHP_EOL.'				<div id="main6" class="hideCont">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 //		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>Plant Shape</h1><h3>Touch the closest match of the plant you saw.</h3></div>'.PHP_EOL;
-		echo PHP_EOL.'				<div class="header selCat '.$pageName.'">';
+		echo PHP_EOL.'				<div class="header selCat '.$pageName.'"><h1>';
+
 		if (count($childHeaderArea) != 0){  // IF array IS NOT empty
+			ob_start();
 			if ($multiLang == 0){	//$multiLang = 0; English
 				$childHeaderBlock0 ->display();
 			} else {
-				$childHeaderBlock1 ->display();
+				$childHeaderBlock2 ->display();
 			}
+			$html0 = strip_tags(ob_get_clean());
+			echo $html0;
 		} else {
-			echo '<h1>'.$childPageName.'</h1>';
+			echo $childLvl1Name;
 		}
-//		$plidHeader6 = Block::getByID($plidHeaderArea[6]->bID);
-//		$plidHeader6->display();
-		
-		echo '</div>'.PHP_EOL;
+		echo '</h1><h3>';
+		if (count($childHeaderArea) != 0){  // IF array IS NOT empty
+			ob_start();
+			if ($multiLang == 0){	//$multiLang = 0; English
+				$childHeaderBlock1 ->display();
+			} else {
+				$childHeaderBlock3 ->display();
+			}
+			$html1 = strip_tags(ob_get_clean());
+			echo $html1;
+		} else {
+			if ($chdLvl1parentPageName == "birds-id"){
+				$matchWord = "bird";
+			} else {
+				$matchWord = "plant";
+			}
+			echo 'TEST Touch the closest match of the '.$matchWord.' you saw.';
+		}
+		echo '</h3></div>'.PHP_EOL;		
 		echo '							<ul class="birdShapesNav lvl1">'.PHP_EOL;  //Split lvl2 into ul #sub(parentID)
 
 		$parentPage = Page::getByID($child);  // Get page by ID $child
@@ -600,7 +698,7 @@ $childLvl1Block3 = Block::getByID($childLvl1Area[3]->bID);	//Spanish desc text
 						<div id="loadCont">ajax</div>
 <?php
 
-echo '<p>pagePath: '.$pagePath.'</p>'.PHP_EOL;  // Testing  pagePath: /spn/earth/plant-animal-id
+//TEST echo '<p>pagePath: '.$pagePath.'</p>'.PHP_EOL;  // Testing  pagePath: /spn/earth/plant-animal-id
 
 foreach ($childrenLvl1 as $childLvl1) {
 // TESTING

@@ -30,13 +30,15 @@ $homeURL = $parent->getCollectionPath();
 $multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 
 if ($u -> isLoggedIn ()) {  // Check login
+	$isLoggedIn = 1;
 	if ($c->isEditMode()) {  // if YES Login and YES Edit
 		$isEdit = 1;
 	}
 	else {   // if YES Login and NO Edit
-		$isEdit = 1;
+		$isEdit = 0;
 	}
 } else { // if NO Login
+	$isLoggedIn = 0;
 	$isEdit = 0;
 }
 
@@ -122,7 +124,42 @@ if ($isEdit == 0) {  // IF logged-in don't output JS
 		<div id="main-content-inner">
 
 <?php	//Edit mode show Main area
-if ($isEdit == 1) {  // If in edit mode, show all blocks
+if ($isLoggedIn == 1) { //Logged in
+?>
+<script type="text/javascript">	
+	$(document).ready(function() {
+<?php	
+	if ($isEdit == 1) {	
+?>
+//Add instructions to button label block
+		$('.ccm-area').each(function(){
+			var areaHandle = $(this).attr('handle');			
+			if (areaHandle == 'Main'){	
+				var introDiv = $(this);
+				$(introDiv).children('div').eq(1).addClass('<?php echo $parentName ?>');
+			} else {
+			}
+		});
+<?php	
+	} else {	//Logged In NOT Edit
+?>
+		$('.zoomBkg').each(function(){
+			$(this).css('top','20px').css('left','20px');
+		});
+		
+		$('.zoomInfoCont').each(function(){
+			$(this).css('display','none');
+		});
+<?php	
+	} //END	if ($isEdit == 1)
+?>	
+	});
+</script>
+<?php
+} //END if ($isLoggedIn
+
+if ($isEdit == 1) {
+
 	$a = new Area('Main');
 	$a->display($c);
 
@@ -134,7 +171,7 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 	$o = new Area('Overlay');
 	echo '<h3>Completion overlay</h3>';
 	$o->display($c);
-	
+
 } else {	//NOT edit show mormal
 
 $page = Page::getCurrentPage();
@@ -149,25 +186,28 @@ $overlayBl =  $o->getAreaBlocksArray($pageCont);
 
 // Instructions overlay
 echo '<div id="over'.$ii.'" class="inOverlayCont '.$parentName.'">'.PHP_EOL;
-$introBl[0]->display();
-if (count($introBl) != 1){
-	echo '<div class="closeCb">';
-	ob_start();
-	$introBl[1]->display();
-	$html1 = strip_tags(ob_get_clean());
-	echo $html1;
-	echo '</div>'.PHP_EOL;
-} else {
-	if ($multiLang == 0){
-		echo '<div class="closeCb">Start &gt;</div>';
+if (count($introBl) != 0){	// FIX for Presentation EDIT check if Intro is empty
+	$introBl[0]->display();
+	if (count($introBl) != 1){
+		echo '<div class="closeCb">';
+		ob_start();
+		$introBl[1]->display();
+		$html1 = strip_tags(ob_get_clean());
+		echo $html1;
+		echo '</div>'.PHP_EOL;
 	} else {
-		echo '<div class="closeCb">Comienzo &gt;</div>';
+		if ($multiLang == 0){
+			echo '<div class="closeCb">Start &gt;</div>';
+		} else {
+			echo '<div class="closeCb">Comienzo &gt;</div>';
+		}
 	}
 }
 echo '</div><!-- END cont'.$ii.' -->'.PHP_EOL;
+if ($isLoggedIn == 0) { //Not Logged in output overlay; IF Lodded in DO NOT display
+	echo '			<div class="inOverlay ovFull"></div><!-- END hideCont intro -->'.PHP_EOL;
+} 
 ?>
-			<div class="inOverlay ovFull"></div><!-- END hideCont intro -->
-
 			<div class="hideCont">
 <?php	//Hidden overlay item info divs to be loaded into colorbox
 $i = 1;

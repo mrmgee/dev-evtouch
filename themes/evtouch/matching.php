@@ -10,6 +10,7 @@ $parent = Page::getByID($c->getCollectionParentID());
 $parentName = $parent->getCollectionHandle();
 $pageName = $c->getCollectionHandle();
 $pageTitle = $c->getCollectionName();
+$pageType = $c->getCollectionTypeHandle();
 $fsName = $parentName.'_bkg';
 $fs = FileSet::getByName($fsName);
 $fileList = new FileList();
@@ -39,15 +40,12 @@ else {
  
 	$(document).ready(function() {
 	
-	//	$('#main-content-container').fadein(500);
-	
 		$('.imgCredit img').each(function(){	//Find img in div.imgCredit and disable drag
 			$(this).attr('ondragstart', 'return false');	
 		});
 		
 		$('.nHome').click(function(event){
 			event.preventDefault();
-//			linkLocation = $(this).attr('id');
 			linkLocation = '<?php echo $homeURL ?>';
 			$("#main-bkg-inner").fadeOut(500);
 			$("#main-content-container").fadeOut(500, redirectPage);
@@ -56,6 +54,19 @@ else {
 		function redirectPage() {
 			window.location = linkLocation;
 		}
+<?php if($isEdit!=0) {  // If in edit mode, show ?>
+//Add instructions to button label block
+		$('.ccm-area').each(function(){
+			var areaHandle = $(this).attr('handle');
+			if (areaHandle == 'Intro'){
+				var introDiv = $(this);
+				$(introDiv).children('div').eq(2).append('<em>Start Button Label</em>');
+
+			} else {
+			}
+		});
+<?php }  // END If in edit mode ?>
+
 	}); // END document.ready
 
 </script>
@@ -68,7 +79,7 @@ else {
 <link rel="stylesheet" type="text/css" href="<?php echo DIR_REL?>/packages/lightboxed_image/blocks/lightboxed_image/css/theme1/colorbox.css" />
 
 </head>
-<body id="<?php echo $pageName ?>">
+<body id="<?php echo $pageName ?>" class="<?php echo $pageType ?>">
 <!--start main container -->
 <div id="main-container" >
 	<div id="/<?php echo $parentName ?>" class="nHome lHome<?php echo $multiLang ?> <?php echo $parentName ?> "><div></div></div>
@@ -99,6 +110,12 @@ if ($isEdit == 1) {  // If in edit mode, show all blocks
 	
 	$mBkg = new Area('Background');
 	$mBkg->display($c);
+	
+	$sliderArea = new Area('EasySlider');
+	if ($c->getMasterCollectionID() != $c->getCollectionID()) {
+	  $sliderArea->disableControls($c);
+	}
+	$sliderArea->display($c);
 	
 } else {   // If NOT edit mode output slides
 ?>
@@ -230,10 +247,9 @@ echo '<!-- <p>Matching code here</p> -->'.PHP_EOL;
 
 $blocks = $a->getAreaBlocksArray($pageCont);
 
-
 	foreach ($blocks as $b) {
 		$blTypeName = $b->getBlockTypeHandle();
-//TESTING echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL;
+//TEST echo '<p>block Type name:'.$blTypeName.'</p>'.PHP_EOL; 
 		if ($blTypeName == "content"){ // Display content blocks
 			$b->display();
 		}
@@ -291,19 +307,20 @@ $blocks = $a->getAreaBlocksArray($pageCont);
 			echo '<div id="incorrMsg'.($i+1).'" class="itemInfoCont incorrCont">'.$btc->field_7_wysiwyg_content.'<div class="clear"></div></div>'.PHP_EOL;  // output incorr msg div
 			
 			echo '<div id="corrMsg'.($i+1).'" class="itemInfoCont">'.PHP_EOL;
-			if ($pageName == "birds-matching"){
+			
+			if ($pageName == "mammals-match"){	//ORIG if ($pageName == "birds-matching")
+				echo '<div class="imgCredit"><img src="'.$matchImgArr2[$i].'" ondragstart="return false" />'.PHP_EOL;  // matching use ITEM img in corr
+				echo '<h3>'.$itemCred[$i].'</h3></div>'.PHP_EOL;
+			} else {	//NOT mammals-match YES birds-matching other matching		
 				echo '<div class="imgCredit '.$pageName.'"><img src="'.$matchImgArr5[$i].'" ondragstart="return false" />'.PHP_EOL;  // birds-matching use TARGET img in corr
 				echo '<h3>'.$itemTargetCred[$i].'</h3></div>'.PHP_EOL;
-			} else {
-				echo '<div class="imgCredit"><img src="'.$matchImgArr2[$i].'" ondragstart="return false" />'.PHP_EOL;  // matching use ITEM img in corr
-				//echo '<h3>'.$itemTargetCred[$i].'</h3></div>'.PHP_EOL;	//Target credits
-				echo '<h3>'.$itemCred[$i].'</h3></div>'.PHP_EOL;
+
 			}
 		
 			echo $btc->field_8_wysiwyg_content.PHP_EOL;
 			echo '<div class="clear"></div></div>'.PHP_EOL;  // output corr msg div
 			$i++;
-		}	// END if $blTypeName == "matching
+		}	// END if $blTypeName == "matching		
 	}  // END foreach ($blocks as $b)
 	
 	echo '</div><!-- END matchMsg -->'.PHP_EOL;  // END Feedback msg container div
@@ -312,6 +329,9 @@ $blocks = $a->getAreaBlocksArray($pageCont);
 
 	$indexShuffArr = $blArr; // copies
 	shuffle($indexShuffArr);  // shuffles values in array
+	
+
+
 ?>
 
 
@@ -354,6 +374,7 @@ function init(n) {
 		start: function(){
 			$(this).css('z-index','100');
 			cardID = $(this).attr("id"); // returns id of drag card = card1
+//alert('cardID:'+cardID); //TEST		
 		},
 		stop: function(){ $(this).css('z-index','1'); },
 		revert: true
@@ -400,9 +421,11 @@ function handleCardDrop(event,ui){
 		ui.draggable.addClass( 'correct' );
 		ui.draggable.draggable( 'disable' );
 		var droppedOn = $(this);
-<?php if ($pageName != "birds-matching"){
+<?php if ($pageName != "mammals-match"){	//ORIG birds-matching
+	echo '		ui.draggable.hide();'.PHP_EOL;
+} else {
 	echo '		ui.draggable.detach().css({top: 0,left: 0}).appendTo(droppedOn);'.PHP_EOL;
-} else { echo '		ui.draggable.hide();'.PHP_EOL; } ?>
+} ?>
 		ui.draggable.draggable( 'option', 'revert', false );
 		correctCards++;
 		var corrID = '#corrMsg'+cardIDSub;
@@ -434,7 +457,7 @@ function handleCardDrop(event,ui){
 </script>
 <!-- END Matching Javascript -->
 
-			<div id="content" class="matching">
+			<div id="content" class="matching"><!-- TEST style="border:1px solid #ff33cc" -->
 
 				<div id="cardPile" class="<?php echo $pageName ?>">
 <?php
@@ -442,6 +465,7 @@ function handleCardDrop(event,ui){
 // shuffle($indexShuffArr);  // shuffles values in array
 // $itemName = array();  // Maching block item name
 $oddEven = 1;
+$cardCount = count($indexShuffArr);
 
 foreach ($indexShuffArr as $num) {
 $number = $num+1;
@@ -465,20 +489,25 @@ $trInNum = sprintf("%02d",($oddEven-1));
 	echo '<div id="card'.$number.'" class="ui-draggable '.$trInNum.'" style="background:url('.$matchImgArr9[$num].') 0 0 no-repeat;" ref="'.$itemTarget[$num].'"><h3 class="'.$parentName.'">'.$itemName[$num].'</h3></div>'.PHP_EOL;
 
 	$numGl = $num;
-		
-	if( $oddEven == 7 ){
-		echo '<div class="clear"></div></div><!-- END left -->'.PHP_EOL;
+
+	if( $oddEven <= 7 && $oddEven == $cardCount){ //if less than or equal 7 and is last
+		echo '<div class="clear"></div><!-- last '.$cardCount.' --></div><!-- END left -->'.PHP_EOL;
+	} 
+	if($cardCount > $oddEven && $oddEven == 7){ //if total is more than current and current is 7 mammals match 13
+		echo '<div class="clear"></div></div><!-- END left '.$oddEven.'/'.$cardCount.' -->'.PHP_EOL;
 	}
+	
 	array_push($trItemName, $itemName[$num]);	//Add item name to tracking array
 	array_push($trItemTarget, $itemTarget[$num]);	//Add target name to tracking array
 	$oddEven++;
 }
 
-if ($pageName != "birds-matching"){
-	echo '<div class="clear"></div></div><!-- END column -->'.PHP_EOL;
+if ($pageName == "mammals-match"){	//ORIG $pageName != "birds-matching"
+echo '<!-- NO birds-matching -->'.PHP_EOL; //TEST
+	echo '<div class="clear"></div></div><!-- END right --><!-- END column -->'.PHP_EOL;
 
 	//Loop to create bkg slots green transparent
-	$cardCount = count($indexShuffArr);
+//	$cardCount = count($indexShuffArr);	//Moved up to use in cardPile
 	$cc = 1;
 	echo '<div class="cardPileBkgCont">'.PHP_EOL;
 	while ($cc <= $cardCount) {
@@ -486,7 +515,7 @@ if ($pageName != "birds-matching"){
 		$cc++;
 	}
 	echo '</div>'.PHP_EOL;
-}
+} //END if ($pageName == "mammals-match"
 
 echo '</div><!-- END cardPile -->'.PHP_EOL;
 echo '<div id="cardSlots" class="'.$pageName.'">'.PHP_EOL;
@@ -494,7 +523,10 @@ echo '<div id="cardSlots" class="'.$pageName.'">'.PHP_EOL;
 $i = 0;
 foreach ($itemTarget as $slot) {
 	if ($curSlot != $slot){  // Check if slot equals curSlot is duplicate
-		if ($pageName == "birds-matching"){  // Page name IS birds-matching
+	
+//		if ($pageName == "birds-matching"){  //ORIG Page name IS birds-matching
+		if ($pageName != "mammals-match"){  // Page name IS NOT mammals-match
+echo '<!-- NO mammals-match if ($curSlot -->'.PHP_EOL; //TEST
 //			if ( (!empty($itemTargetTop[$i])) && (!empty($itemTargetLeft[$i])) ) {
 //				$targetStyles = 'style="top:'.$itemTargetTop[$i].'px;left:'.$itemTargetLeft[$i].'px;"';
 
@@ -513,27 +545,20 @@ foreach ($itemTarget as $slot) {
 			} else {
 				$targetWidthHeight = '';
 			}
-			
+		
 			if ( (!empty($targetTopLeft)) || (!empty($targetWidthHeight)) ) {
 				$targetStyles = 'style="'.$targetTopLeft.$targetWidthHeight.'"';
 			} else {
 				$targetStyles = '';
 			}
-				
 
-
-			
-			echo '<div id="slot'.($i).'" class="ui-droppable" '.$targetStyles.' ref="'.$itemTarget[$i].'"><h3 class="tarTitle">'.$itemTargetTxt[$i].'</h3>';
-//TESTING
-//			echo $i.'top:'.$itemTargetTop[$i].$i.'-left:'.$itemTargetLeft[$i].$i.'-w:'.$itemTargetWidth[$i].$i.'-h:'.$itemTargetHeight[$i];
-			
+			echo '<div id="slot'.($i).'" class="ui-droppable" '.$targetStyles.' ref="'.$itemTarget[$i].'"><h3 class="tarTitle">'.$itemTargetTxt[$i].'</h3>';		
 			echo '</div>'.PHP_EOL;
-		} else {
+		} else {	//YES $pageName == "mammals-match"
 			echo '<div id="slot'.($i).'" class="ui-droppable" style="background: url('.$matchImgArr5[$i].') 0 0 no-repeat;" ref="'.$itemTarget[$i].'">'.PHP_EOL;
 			echo '<h3 class="tarTitle">'.$itemTarget[$i].'</h3>'.PHP_EOL;
-//			echo '<h4 class="imgCredit">'.$itemTargetCred[$i].'</h3></div>'.PHP_EOL;
 			echo '</div>'.PHP_EOL;
-		} //$pageName == "birds-matching"
+		} //END if $pageName != "mammals-match"
 	}
 	$curSlot = $slot;
 	$i++;
@@ -547,8 +572,6 @@ foreach ($blocks as $matchBkg) {
 		$matchBkg->display();
 	}
 }
-
-
 //$mBkgBl
 
 foreach ($mBkgBl as $mBkgImg) {
@@ -571,12 +594,21 @@ $trItemTargetJsArr = '["' . implode('","', $trItemTarget) . '"]';	//creates targ
 echo '				<!--END REPLACE-->'.PHP_EOL;
 echo '			</div>'.PHP_EOL;
 
+
 ?>
 					<script type="text/javascript">easy_slider_slideshow_configs[easy_slider_current_template].push({ "showControls":0, "showPagination":0, "autostart":0, "hoverPause":0, "slideTime":0, "slideTimes":easy_slider_slideshow_configs_temp["slideTimes"]});</script>
 				</div><!-- END slides_container -->
 			</div><!-- END easysliderslideshow_140 -->
 
-<?php			
+<?php
+//EasySlider default blocks from matching page type
+echo '<!-- START EasySlider default blocks -->'.PHP_EOL; //TEST 
+/*
+$sliderArea = new Area('EasySlider');
+$sliderArea->disableControls($c);
+$sliderArea->display($c);
+*/
+echo PHP_EOL.'<!-- END EasySlider default blocks -->'.PHP_EOL; //TEST 
 }  // END  else {} NOT edit mode output slides
 ?>
 

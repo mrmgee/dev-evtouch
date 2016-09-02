@@ -28,7 +28,7 @@
 
 /* The initial pile of unsorted cards */
 
-#cardPile {
+#cardPile.mammals-match {	/* #cardPile */
 	position: relative;
 	float: left;
 /* (145+14)x2=(318-14)=304 */
@@ -39,6 +39,19 @@
 	padding: 0;
 /*	border: 1px solid #333; */
 }
+
+#cardPile {	/* #cardPile.birds-matching */
+	position: relative;
+	float: left;
+	width: 145px;
+	height: 920px;
+/*	margin: 0 14px 0 0; */
+	margin: 0;
+	padding: 0;
+/*	border: 1px solid #333; */
+}
+
+
 
 #cardPile .cardPileBkgCont  {
 	position: absolute;
@@ -79,17 +92,14 @@ REF div.matching #cardSlots div.ui-droppable:nth-child(odd), div.matching #cardP
 }
  */
  
-#cardSlots {
+#cardSlots.mammals-match {
 	position: relative;
 	float: left;
-/* 1760 - (320+14) = 1428 */
-/* 1760 - 304 = 1454 */
-	width: 1456px; 
-/*	height: 200px; */
+	width: 1456px; 	/* 1456px */
 	margin: 0;
 	padding: 0;
-/*	border: 1px solid #333; */
 }
+
 
 /* Individual cards and slots */
 
@@ -124,7 +134,7 @@ div.matching #cardPile div.cardPileCol div.ui-draggable:last-child {
 	padding: 0;
 	display: block;
 }
-.ui-draggable h3 {
+#cardPile.mammals-match .ui-draggable h3 {	/*	.ui-draggable h3 */
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -137,6 +147,22 @@ div.matching #cardPile div.cardPileCol div.ui-draggable:last-child {
 	text-transform: uppercase;
 	text-align: center;
 }
+
+
+.ui-draggable h3 {	/*	#cardPile.birds-matching .ui-draggable h3 */
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 14px;
+	margin: 0;
+	padding: 6px 0 0 0;
+	font-size: 10px;
+	color: #FFF;
+	text-transform: uppercase;
+	text-align: center;
+}
+
 /* #cardSlots div.ui-droppable:first-child, #cardPile div:first-child { */
 
 div.matching #cardSlots div.ui-droppable:nth-child(odd), div.matching #cardPile div:nth-child(odd) {
@@ -156,7 +182,7 @@ div.matching #cardSlots div.ui-droppable:nth-child(odd), div.matching #cardPile 
   border-style: dashed;
 }
 */
-#cardSlots div.ui-droppable {
+#cardSlots.mammals-match div.ui-droppable {	/* #cardSlots div.ui-droppable */
 /* 1456 - (720x2=1440) = 16  */
 	position: relative;
 	float: left;
@@ -188,6 +214,15 @@ div.matching #cardSlots div.ui-droppable:nth-child(odd), div.matching #cardPile 
   box-shadow: 0 0 .5em rgba(0, 0, 0, .8);
 }
 
+body.matching #cardSlots div.ui-droppable {	/* #cardSlots.birds-matching div.ui-droppable */
+/* 1456 - (720x2=1440) = 16  */
+	position: absolute;
+	width: 330px;
+	height: 260px;
+	margin: 0 0 16px 16px;
+	padding: 0;
+/*	border: 1px solid #333; */
+}
 
 /* cardBins Many-to-One */
 #cardBins {
@@ -323,7 +358,7 @@ h3.tarTitle {
 	float: left;
 	margin: 58px 10px 0 10px;
 }
-#mammals-match .itemInfoCont .imgCredit, #birds-matching .itemInfoCont .imgCredit {
+#mammals-match .itemInfoCont .imgCredit, #birds-matching .itemInfoCont .imgCredit, body.matching .itemInfoCont .imgCredit {
 	position: relative;
 	float: left;
 	margin: 56px 0 0 10px;
@@ -341,7 +376,7 @@ h3.tarTitle {
 	line-height: 24px;
 }
 
-#mammals-match .itemInfoCont p, #birds-matching .itemInfoCont p {
+#mammals-match .itemInfoCont p, #birds-matching .itemInfoCont p, body.matching .itemInfoCont p {
 	margin: 56px 0 0 10px;
 	font-size: 18px;
 	font-weight: 500;
@@ -412,6 +447,7 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 	padding: 0;
 	display:block;
 /*	border: 1px solid #000; */
+	text-align: center;
 }
 
 #main-content-inner.birds-matching .intro .introHead p {
@@ -421,6 +457,7 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 	font-size: 26px;
 	font-weight: 300;
 	line-height: 30px;
+	text-align: left;
 }
 
 
@@ -442,6 +479,7 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 	font-size: 22px;
 	font-weight: 300;
 	line-height: 28px;
+	text-align: left;
 }
 #main-content-inner.birds-matching .introCont p em {
 	font-size: 24px;
@@ -450,24 +488,13 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 	text-transform: uppercase;
 }
 
-
-#birds-matching .inOverlayCont p {
-	margin: 0 80px 20px 80px;
-	padding: 0;
-	color: #FFF;
-	font-size: 34px;
-	font-weight: 500;
-	line-height: 44px;
-	text-align: center;
-}
-
 #cardPile.birds-matching .cardPileCol div:nth-child(7) {
 	margin: 4px 0 0 0;
 }
 
 
 /* Zoom Page styles */
-#main-content-inner.birds-matching .zoomBkg {
+#main-content-inner.birds-matching .zoomBkg, body.matching .zoomBkg {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -479,34 +506,9 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 	z-index: -9;
 }
 
-#cardPile.birds-matching {
+#cardSlots {
 	position: relative;
-	float: left;
-	width: 145px;
-	height: 920px;
-/*	margin: 0 14px 0 0; */
-	margin: 0;
-	padding: 0;
-/*	border: 1px solid #333; */
-}
-
-#cardPile.birds-matching .ui-draggable h3 {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 14px;
-	margin: 0;
-	padding: 6px 0 0 0;
-	font-size: 10px;
-	color: #FFF;
-	text-transform: uppercase;
-	text-align: center;
-}
-
-#cardSlots.birds-matching {
-	position: relative;
-	float: left;
+/*	float: left; */
 /* 1760 - 145 = 1615 */
 	width: 1615px; 
 /*	height: 200px; */
@@ -515,22 +517,14 @@ div.presMatching #cardSlots div:first-child, div.presMatching #cardPile div:firs
 /*	border: 1px solid #333; */
 }
 
-#cardSlots.birds-matching div.ui-droppable {
-/* 1456 - (720x2=1440) = 16  */
-	position: absolute;
-	width: 330px;
-	height: 260px;
-	margin: 0 0 16px 16px;
-	padding: 0;
-/*	border: 1px solid #333; */
-}
+
 
 .imgCredit.birds-matching {
 	position: relative;
 	float: left;
 	margin: 60px 15px 0 15px;
 }
-.imgCredit.birds-matching img {
+.imgCredit.birds-matching img, .itemInfoCont .imgCredit img {
 	float: left;
 	margin: 0;
 }

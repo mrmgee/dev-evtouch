@@ -149,19 +149,10 @@
 	Pagination
 */
 
-/*
+
 .fullAppCta {
-	width: 1600px;
 	margin: 0 auto;
-}
-*/
-#mammals-match .fullAppCta {
-	width: 1550px;
-	margin: 30px auto 0 auto;
-}
-#birds-matching .fullAppCta {
-	width: 1200px;
-	margin: 0 auto;
+	display: inline-block;
 }
 
 .fullAppCta h3 {

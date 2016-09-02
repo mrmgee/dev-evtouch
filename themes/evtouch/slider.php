@@ -355,10 +355,7 @@ foreach ($children as $child) {
 				$detBtn = Block::getByID($detBtnArr[1]->bID);
 				$detBtn ->display();
 			}
-		} else {
-			echo 'DETAILS'.PHP_EOL;
-			print_r ($detBtnArr);
-		}
+		} 
 		echo '</div>'.PHP_EOL;
 	}
 	echo '	<div class="clear"></div>'.PHP_EOL;

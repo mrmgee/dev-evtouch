@@ -136,32 +136,6 @@ $(document).ready(function() {
 		<?php  
 		$a = new Area('Header Image');
 		$a->display($c);
-		
-		if ($pageName == "earth") {  // if YES Login and YES Edit
-		$langLnk = "Spanish";
-		}
-		else {   // if YES Login and NO Edit
-		$langLnk = "English";
-		}
-
-		echo PHP_EOL.'<h2>pagePathStart: '.$pagePathStart.' multiLang: '.$multiLang.'  = 0English/1Spanish</h2>'.PHP_EOL;
-		
-		echo PHP_EOL.'<h2>'.$grandParentName.' / '.$parentName.'</h2>'.PHP_EOL; //Display page title Earth
-/* TEST		
-		echo PHP_EOL.'<ul>'.PHP_EOL;
-		foreach ($children as $child) {
-			$childPage = Page::getByID($child);
-			$childPageName = $childPage->getCollectionHandle();
-			$childPageTitle = $childPage->getCollectionName();
-			echo PHP_EOL.'<li>childPageName: '.$childPageName.' - '.$childPageTitle.'</li>'.PHP_EOL;  // Testing
-		}
-		echo PHP_EOL.'</ul>'.PHP_EOL;
-TEST */		
-		echo PHP_EOL.'<h2>LANG: '.$langLnk.'</h2>'.PHP_EOL; //Display page title Earth
-		echo PHP_EOL.'<h2>TITLE: '.$pageTitle.'</h2>'.PHP_EOL; //Display page title Earth
-		echo PHP_EOL.'<h2>NAME: '.$pageName.'</h2>'.PHP_EOL; //Display page name earth
-
-		
 		?>
 	</div>
 	

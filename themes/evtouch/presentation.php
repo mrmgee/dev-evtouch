@@ -71,17 +71,6 @@ $multiLang = $_SESSION['firstMessage'];	//$multiLang = 0/1: English/Spanish
 	<div id="main-content-container" class="grid_24">
 		<div id="main-content-inner">
 
-
-<?php // - - - - - - - - - TEST
-$a = new Area('Main');
-	$a->display($c);
-
-/*
-$blocksAll = $c->getBlocks();
-print_r($blocksAll);
-*/
-//END - - - - - - - - -  TEST ?>
-
 			<script type="text/javascript">
 			if (!(typeof easy_slider_slideshow != 'undefined')) {
 				var easy_slider_slideshow = new Array();

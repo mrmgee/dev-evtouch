@@ -150,6 +150,7 @@
 											<option value="cp">Cherry Point</option>
 											<option value="cn">Chesapeake Bay North</option>
 											<option value="cs">Chesapeake Bay South</option>
+											<option value="cy">Cuyahoga</option>
 											<option value="db">Delaware River &amp; Bay</option>
 											<option value="hg">Houston/Galveston</option>
 											<option value="hb">Humboldt Bay</option>
@@ -218,7 +219,7 @@
 									<li><a href="http://opendap.co-ops.nos.noaa.gov">IOOS
 											Data Portal</a></li>
 									<li><a href="/nowcoast.html">nowCOAST</a></li>
-									<li><a href="/quicklook.html">Storm QuickLooks</a></li>
+									<li><a href="/quicklook.html">Storm QuickLooks</a></li>									
 									<li><a href="/googleearth.html">Google Earth/KML Files</a>
 									</li>
 									<li><a href="/gmap3/">Tides &amp; Currents Map</a></li>
