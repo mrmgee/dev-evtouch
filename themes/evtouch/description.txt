@@ -1,2 +1,5 @@
 EV Touchscren
 Standard full-screen 1920x1080 HD.
+
+Thu 7-12-18
+This is a test of Git2Go
